@@ -12,8 +12,9 @@ class AuthController extends Controller
 {
     //
 
-    public function login(Request $request)
+    public function auth(Request $request)
     {
+
         $request->validate(
             [
                 'email' => 'required|string|email',
@@ -29,29 +30,21 @@ class AuthController extends Controller
             ]
         );
 
-        $user = User::where('email', $request->email)->first();
+        $remember = !empty($request->remember) ? true : false;
 
-        if (!$user) {
-            return response()->json([
-                'errors' => [
-                    'email' => 'Email không tồn tại.',
-                ],
-            ], 422);
+        $cerdentials = $request->only('email', 'password', $remember);
+        if (Auth::attempt($cerdentials)) {
+            return redirect()->route('admin.dashboard');
+        } else {
+            return response()->json(['errors' => [
+                'error' => 'Email hoặc mật khẩu không đúng.'
+            ]], 422);
         }
+    }
 
-        if (!Hash::check($request->password, $user->password)) {
-            return response()->json([
-                'errors' => [
-                    'password' => 'Mật khẩu không đúng.',
-                ],
-            ], 422);
-        }
-
-        $token = $user->createToken('BanHang')->plainTextToken;
-
-        return response()->json([
-            'token' => $token,
-        ], 200);
+    public function login()
+    {
+        return view('admin.login.index');
     }
 
     public function logout(Request $request)
