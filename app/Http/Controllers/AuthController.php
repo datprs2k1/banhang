@@ -30,11 +30,12 @@ class AuthController extends Controller
             ]
         );
 
-        $remember = !empty($request->remember) ? true : false;
+        $remember = $request->remember;
 
-        $cerdentials = $request->only('email', 'password', $remember);
-        if (Auth::attempt($cerdentials)) {
-            return redirect()->route('admin.dashboard');
+        $cerdentials = $request->only('email', 'password');
+
+        if (Auth::attempt($cerdentials, $remember)) {
+            return response()->json(['message' => 'Đăng nhập thành công.', 'status' => true]);
         } else {
             return response()->json(['errors' => [
                 'error' => 'Email hoặc mật khẩu không đúng.'

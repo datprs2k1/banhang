@@ -2078,13 +2078,9 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default().ajaxSetup({
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()('#loginAdmin').click(function (e) {
   e.preventDefault();
-  loginAdmin();
-});
-
-function loginAdmin() {
   var email = jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[name="email"]').val();
   var password = jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[name="password"]').val();
-  var remember = jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[name="remember"]').val();
+  var remember = jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[name="remember"]').prop('checked');
 
   var _token = jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[name="_token"]').val();
 
@@ -2101,6 +2097,14 @@ function loginAdmin() {
       remember: remember,
       _token: _token
     },
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#loginAdmin').prop('disabled', true);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#loginAdmin').html('<i class="fa fa-spinner fa-spin"></i> Đang đăng nhập...');
+    },
+    complete: function complete() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#loginAdmin').prop('disabled', false);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#loginAdmin').html('Đăng nhập');
+    },
     success: function success(data) {
       sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
         title: "Thành công!",
@@ -2109,7 +2113,7 @@ function loginAdmin() {
         button: "OK!"
       }).then(function (result) {
         if (result.value) {
-          window.location.href = '/admin/dashboard';
+          window.location.href = '/admin';
         }
       });
     },
@@ -2131,9 +2135,7 @@ function loginAdmin() {
       });
     }
   });
-}
-
-;
+});
 
 /***/ }),
 

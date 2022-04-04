@@ -36,34 +36,21 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="icheck-primary">
-                                    <input type="checkbox" name="remember" id="remember" value="1">
+                                    <input type="checkbox" name="remember" id="remember">
                                     <label for="remember">
                                         Remember Me
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-4">
-                                <button type="submit" id="loginAdmin" class="btn btn-primary btn-block">Sign In</button>
-                            </div>
                         </div>
-                    </form>
-                    <div class="social-auth-links text-center mb-3">
-                        <p>- OR -</p>
-                        <a href="#" class="btn btn-block btn-primary">
-                            <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                        </a>
-                        <a href="#" class="btn btn-block btn-danger">
-                            <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-                        </a>
-                    </div>
-                    <p class="mb-1">
-                        <a href="forgot-password.html">I forgot my password</a>
-                    </p>
-                    <p class="mb-0">
-                        <a href="register.html" class="text-center">Register a new membership</a>
-                    </p>
+                        <div class="col-12 mt-3">
+                            <button type="submit" id="loginAdmin" class="btn btn-primary btn-block" type="button">Đăng
+                                nhập</button>
+                        </div>
                 </div>
+                </form>
             </div>
         </div>
+    </div>
     </div>
 @endsection

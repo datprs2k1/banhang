@@ -9,16 +9,13 @@ $.ajaxSetup({
     }
 });
 
+
 $('#loginAdmin').click(function (e) {
     e.preventDefault();
-    loginAdmin();
-});
 
-
-function loginAdmin() {
     var email = $('input[name="email"]').val();
     var password = $('input[name="password"]').val();
-    var remember = $('input[name="remember"]').val();
+    var remember = $('input[name="remember"]').prop('checked');
     var _token = $('input[name="_token"]').val();
 
     $('input[name="email"]').removeClass('is-invalid');
@@ -35,6 +32,14 @@ function loginAdmin() {
             remember: remember,
             _token: _token
         },
+        beforeSend: function () {
+            $('#loginAdmin').prop('disabled', true);
+            $('#loginAdmin').html('<i class="fa fa-spinner fa-spin"></i> Đang đăng nhập...');
+        },
+        complete: function () {
+            $('#loginAdmin').prop('disabled', false);
+            $('#loginAdmin').html('Đăng nhập');
+        },
         success: function (data) {
             Swal.fire({
                 title: "Thành công!",
@@ -43,7 +48,7 @@ function loginAdmin() {
                 button: "OK!",
             }).then((result) => {
                 if (result.value) {
-                    window.location.href = '/admin/dashboard';
+                    window.location.href = '/admin';
                 }
             });
         },
@@ -64,4 +69,4 @@ function loginAdmin() {
             });
         }
     });
-};
+});
