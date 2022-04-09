@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class AdminHeader extends Component
+class Footer extends Component
 {
     /**
      * Create a new component instance.
@@ -23,9 +23,6 @@ class AdminHeader extends Component
      */
     public function render()
     {
-
-        $menu = config('adminMenu');
-
-        return view('components.admin-header', compact('menu'));
+        return view('components.footer');
     }
 }

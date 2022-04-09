@@ -12,7 +12,7 @@ class AuthController extends Controller
 {
     //
 
-    public function auth(Request $request)
+    public function authAdmin(Request $request)
     {
 
         $request->validate(
@@ -35,7 +35,13 @@ class AuthController extends Controller
         $cerdentials = $request->only('email', 'password');
 
         if (Auth::attempt($cerdentials, $remember)) {
-            return response()->json(['message' => 'Đăng nhập thành công.', 'status' => true]);
+            if (Auth::user()->hasRole('admin')) {
+                return response()->json(['message' => 'Đăng nhập thành công.', 'status' => true]);
+            } else {
+                return response()->json(['errors' => [
+                    'error' => 'Bạn không có quyền truy cập.'
+                ]], 422);
+            }
         } else {
             return response()->json(['errors' => [
                 'error' => 'Email hoặc mật khẩu không đúng.'
@@ -45,7 +51,7 @@ class AuthController extends Controller
 
     public function login()
     {
-        return view('admin.login.index');
+        return view('admin.pages.login.index');
     }
 
     public function logout(Request $request)

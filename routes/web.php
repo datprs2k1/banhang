@@ -16,14 +16,14 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome')->name('home');
 });
 
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/login', [AuthController::class, 'login'])->name('admin.login');
-    Route::post('/login', [AuthController::class, 'auth'])->name('admin.auth');
-    Route::middleware('auth')->group(function () {
+    Route::post('/login', [AuthController::class, 'authAdmin'])->name('admin.authAdmin');
+    Route::middleware('admin')->group(function () {
         Route::get('/', [UserController::class, 'adminDashboard'])->name('admin.dashboard');
     });
 });

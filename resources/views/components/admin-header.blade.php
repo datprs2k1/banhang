@@ -189,126 +189,28 @@
                     data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-warehouse"></i>
-                            <p>
-                                Quản lý danh mục
-                                <i class="fas fa-angle-left right"></i>
-                                <!-- <span class="badge badge-info right">6</span> -->
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <div class="nav-link">
-                                    <i class="ml-1 mr-1 nav-icon fas fa-table"></i>
-                                    <p>Danh sách</p>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <div class="nav-link">
-                                    <i class="ml-1 mr-1 nav-icon fas fa-plus-circle"></i>
-                                    <p>Thêm</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-warehouse"></i>
-                            <p>
-                                Quản lý danh mục
-                                <i class="fas fa-angle-left right"></i>
-                                <!-- <span class="badge badge-info right">6</span> -->
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <div class="nav-link">
-                                    <i class="ml-1 mr-1 nav-icon fas fa-table"></i>
-                                    <p>Danh sách</p>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <div class="nav-link">
-                                    <i class="ml-1 mr-1 nav-icon fas fa-plus-circle"></i>
-                                    <p>Thêm</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-warehouse"></i>
-                            <p>
-                                Quản lý danh mục
-                                <i class="fas fa-angle-left right"></i>
-                                <!-- <span class="badge badge-info right">6</span> -->
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <div class="nav-link">
-                                    <i class="ml-1 mr-1 nav-icon fas fa-table"></i>
-                                    <p>Danh sách</p>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <div class="nav-link">
-                                    <i class="ml-1 mr-1 nav-icon fas fa-plus-circle"></i>
-                                    <p>Thêm</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-warehouse"></i>
-                            <p>
-                                Quản lý danh mục
-                                <i class="fas fa-angle-left right"></i>
-                                <!-- <span class="badge badge-info right">6</span> -->
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <div class="nav-link">
-                                    <i class="ml-1 mr-1 nav-icon fas fa-table"></i>
-                                    <p>Danh sách</p>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <div class="nav-link">
-                                    <i class="ml-1 mr-1 nav-icon fas fa-plus-circle"></i>
-                                    <p>Thêm</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-warehouse"></i>
-                            <p>
-                                Quản lý danh mục
-                                <i class="fas fa-angle-left right"></i>
-                                <!-- <span class="badge badge-info right">6</span> -->
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <div class="nav-link">
-                                    <i class="ml-1 mr-1 nav-icon fas fa-table"></i>
-                                    <p>Danh sách</p>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <div class="nav-link">
-                                    <i class="ml-1 mr-1 nav-icon fas fa-plus-circle"></i>
-                                    <p>Thêm</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
+                    @foreach ($menu as $item)
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon {{ $item['icon'] }}"></i>
+                                <p>
+                                    {{ $item['name'] }}
+                                    <i class="fas fa-angle-left right"></i>
+                                    <!-- <span class="badge badge-info right">6</span> -->
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                @foreach ($item['children'] as $a)
+                                    <li class="nav-item">
+                                        <div class="nav-link">
+                                            <i class="ml-1 mr-1 nav-icon {{ $a['icon'] }}"></i>
+                                            <p>{{ $a['name'] }}</p>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endforeach
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
