@@ -4,16 +4,16 @@ return [
     [
         'name' => 'Quản lý danh mục',
         'icon' => 'fa fa-list',
-        'route' => 'admin.categories.index',
+        'route' => 'admin.pages.danhmuc.index',
         'children' => [
             [
                 'name' => 'Danh sách',
-                'route' => 'admin.categories.index',
+                'route' => 'danhmuc.index',
                 'icon' => 'fa fa-list',
             ],
             [
                 'name' => 'Thêm mới',
-                'route' => 'admin.categories.create',
+                'route' => 'danhmuc.create',
                 'icon' => 'fa fa-plus',
             ],
         ],

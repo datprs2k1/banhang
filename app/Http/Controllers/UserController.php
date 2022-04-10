@@ -84,6 +84,6 @@ class UserController extends Controller
 
     public function adminDashboard()
     {
-        return view('admin.dashboard.index');
+        return view('admin.pages.dashboard.index');
     }
 }

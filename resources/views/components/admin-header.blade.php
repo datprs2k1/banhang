@@ -191,7 +191,7 @@
                     with font-awesome or any other icon font library -->
                     @foreach ($menu as $item)
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ $item['route'] }}" class="nav-link">
                                 <i class="nav-icon {{ $item['icon'] }}"></i>
                                 <p>
                                     {{ $item['name'] }}
@@ -202,10 +202,10 @@
                             <ul class="nav nav-treeview">
                                 @foreach ($item['children'] as $a)
                                     <li class="nav-item">
-                                        <div class="nav-link">
+                                        <a href="{{ route($a['route']) }}" class="nav-link">
                                             <i class="ml-1 mr-1 nav-icon {{ $a['icon'] }}"></i>
                                             <p>{{ $a['name'] }}</p>
-                                        </div>
+                                        </a>
                                     </li>
                                 @endforeach
                             </ul>
