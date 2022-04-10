@@ -11,11 +11,6 @@ return [
                 'route' => 'danhmuc.index',
                 'icon' => 'fa fa-list',
             ],
-            [
-                'name' => 'Thêm mới',
-                'route' => 'danhmuc.create',
-                'icon' => 'fa fa-plus',
-            ],
         ],
     ]
 ];

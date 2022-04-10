@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DanhMuc;
+use Carbon\Carbon;
+use Yajra\Datatables\Datatables;
+
+
 
 class DanhMucController extends Controller
 {
@@ -67,6 +71,11 @@ class DanhMucController extends Controller
     public function show($id)
     {
         //
+        $danh_muc = DanhMuc::find($id);
+
+        return response()->json([
+            $danh_muc
+        ], 200);
     }
 
     /**
@@ -105,11 +114,11 @@ class DanhMucController extends Controller
 
         $danh_muc = DanhMuc::find($id);
         $danh_muc->ten_danh_muc = $request->ten_danh_muc;
+        $danh_muc->updated_at = Carbon::now();
         $danh_muc->save();
 
         return response()->json([
-            'message' => 'Sửa danh mục thành công',
-            'ten_danh_muc' => $danh_muc->ten_danh_muc,
+            $danh_muc
         ], 200);
     }
 
@@ -122,17 +131,26 @@ class DanhMucController extends Controller
     public function destroy($id)
     {
         //
-    }
+        $danh_muc = DanhMuc::find($id);
 
-    public function xoadachon(Request $request)
-    {
-        foreach ($request->id as $item) {
-            $danh_muc = DanhMuc::find($item);
-            $danh_muc->delete();
-        }
+        $danh_muc->delete();
 
         return response()->json([
             'message' => 'Xóa danh mục thành công'
         ], 200);
+    }
+
+    public function danhsach()
+    {
+        $danh_muc = DanhMuc::all();
+
+        return Datatables::of($danh_muc)->addIndexColumn()->addColumn('actions', function ($danh_muc) {
+            return '<button class="btn-primary btn me-5 sua_danh_muc" data-toggle="modal" data-id="' . $danh_muc->id . '">
+            Sửa
+        </button>
+        <button class="btn-danger btn xoa_danh_muc" data-toggle="modal" data-id="' . $danh_muc->id . '">
+            Xoá
+        </button>';
+        })->rawColumns(['actions'])->make(true);
     }
 }

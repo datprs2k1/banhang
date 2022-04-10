@@ -90,7 +90,8 @@ $('#them_danh_muc').click(function (e) {
             ten_danh_muc: ten_danh_muc
         },
         beforeSend: function () {
-            $('#them_danh_muc').html('<i class="fa fa-spinner fa-spin"></i> Đang thêm...');
+            $('#them_danh_muc').html(
+                '<i class="fa fa-spinner fa-spin"></i> Đang thêm...');
         },
         complete: function () {
             $('#them_danh_muc').html('Thêm');
@@ -102,7 +103,12 @@ $('#them_danh_muc').click(function (e) {
                 icon: "success",
                 button: "OK!",
             }).then((result) => {
-                location.reload();
+                if (result.value) {
+                    $('#modal-them').modal('hide');
+
+                    let table = $('#danhsach').DataTable();
+                    table.ajax.reload();
+                }
             });
         },
         error: function (error) {
@@ -128,20 +134,22 @@ $('#sua_danh_muc').click(function (e) {
 
     e.preventDefault();
 
-    let ten_danh_muc = $('input[name="ten_danh_muc"]').val();
+    let ten_danh_muc = $('input[name="_ten_danh_muc"]').val();
     let id = $('input[name="id"]').val();
 
-    $('input[name="ten_danh_muc"]').removeClass('is-invalid');
-    $('input[name="ten_danh_muc"]').next().html('');
+    $('input[name="_ten_danh_muc"]').removeClass('is-invalid');
+    $('input[name="_ten_danh_muc"]').next().html('');
 
     $.ajax({
-        url: window.location.protocol + '//' + window.location.host + '/admin/danhmuc' + '/' + id,
+        url: window.location.protocol + '//' + window.location.host + '/admin/danhmuc' +
+            '/' + id,
         type: 'PUT',
         data: {
             ten_danh_muc: ten_danh_muc
         },
         beforeSend: function () {
-            $('#sua_danh_muc').html('<i class="fa fa-spinner fa-spin"></i> Đang sửa...');
+            $('#sua_danh_muc').html(
+                '<i class="fa fa-spinner fa-spin"></i> Đang sửa...');
         },
         complete: function () {
             $('#sua_danh_muc').html('Sửa');
@@ -154,7 +162,10 @@ $('#sua_danh_muc').click(function (e) {
                 button: "OK!",
             }).then((result) => {
                 if (result.value) {
-                    $('input[name="ten_danh_muc"]').val(data.ten_danh_muc);
+                    $('input[name="_ten_danh_muc"]').val(data[0].ten_danh_muc);
+                    $('#modal-sua').modal('hide');
+                    let table = $('#danhsach').DataTable();
+                    table.ajax.reload();
                 }
             });
         },
@@ -177,63 +188,48 @@ $('#sua_danh_muc').click(function (e) {
     });
 });
 
-var checkbox = $('table tbody input[type="checkbox"]');
-
-$("#selectAll").click(function () {
-    if (this.checked) {
-        checkbox.each(function () {
-            this.checked = true;
-        });
-    } else {
-        checkbox.each(function () {
-            this.checked = false;
-        });
-    }
-});
-
-checkbox.click(function () {
-    if (!this.checked) {
-        $("#selectAll").prop("checked", false);
-    }
-});
-
-$('#xoa_da_chon').click(function () {
-    let id = [];
-
-    checkbox.each(function () {
-        if (this.checked) {
-            id.push(this.value);
-        }
-    });
-
-    if (id.length === 0) {
-        Swal.fire({
-            title: "Lỗi!",
-            text: "Bạn chưa chọn dữ liệu cần xóa!",
-            icon: "error",
-            button: "OK!",
-        });
-    } else {
-        $.ajax({
-            url: window.location.protocol + '//' + window.location.host + '/admin/danhmuc',
-            type: 'DELETE',
-            data: {
-                id: id,
-            },
-            beforeSend: function () {
-                $('#xoa_da_chon').html('<i class="fa fa-spinner fa-spin"></i> Đang xóa...');
-            }
-        }).done(function (data) {
-            Swal.fire({
-                title: "Thành công!",
-                text: "Xóa thành công!",
-                icon: "success",
-                button: "OK!",
-            }).then((result) => {
-                if (result.value) {
-                    location.reload();
+$(document).on('click', '.xoa_danh_muc', function (e) {
+    let id = $(this).data('id');
+    Swal.fire({
+        title: "Bạn có chắc chắn muốn xóa?",
+        text: "Sau khi xóa, bạn sẽ không thể khôi phục lại!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Vâng, tôi muốn xóa!",
+        cancelButtonText: "Không, hủy xóa!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: '/admin/danhmuc/' + id,
+                type: 'DELETE',
+                beforeSend: function () {
+                    $('.xoa_danh_muc').html(
+                        '<i class="fa fa-spinner fa-spin"></i> Đang xóa...');
+                }, complete: function () {
+                    $('.xoa_danh_muc').html('Xóa');
+                }, success: function (data) {
+                    Swal.fire({
+                        title: "Thành công!",
+                        text: "Xóa danh mục thành công!",
+                        icon: "success",
+                        button: "OK!",
+                    }).then((result) => {
+                        if (result.value) {
+                            let table = $('#danhsach').DataTable();
+                            table.row("[id='" + id + "']").remove().draw();
+                        }
+                    });
+                }, error: function (error) {
+                    Swal.fire({
+                        title: "Lỗi!",
+                        text: "Xóa danh mục thất bại!",
+                        icon: "error",
+                        button: "OK!",
+                    });
                 }
             });
-        });
-    }
+        }
+    });
 });

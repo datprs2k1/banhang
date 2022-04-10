@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    Sửa danh mục
+    Danh sách danh mục
 @endsection
 
 @section('header')
@@ -22,26 +22,17 @@
                                 <h3 class="card-title">Danh sách</h3>
                             </div>
 
-                            <div class="card-body p-0">
-                                <div class="ms-3 mt-3 mb-3 row">
+                            <div class="card-body">
+                                <div class="mt-3 mb-3 row">
                                     <div class="col">
-                                        <button class="btn-primary btn me-5" data-toggle="modal" data-target="#modal-them">
+                                        <button class="btn-primary btn me-5" data-toggle="modal" id="btn-them">
                                             Thêm
-                                        </button>
-                                        <button class="btn-danger btn" id="xoa_da_chon">
-                                            Xoá đã chọn
                                         </button>
                                     </div>
                                 </div>
-                                <table class="table table-striped">
+                                <table id="danhsach" class="table table-bordered table-striped text-center">
                                     <thead>
                                         <tr>
-                                            <th>
-                                                <span class="custom-checkbox">
-                                                    <input type="checkbox" id="selectAll">
-                                                    <label for="selectAll"></label>
-                                                </span>
-                                            </th>
                                             <th>#</th>
                                             <th>Tên danh mục</th>
                                             <th>Ngày tạo</th>
@@ -49,44 +40,6 @@
                                             <th>Hành động</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        @php
-                                            $stt = 0;
-                                        @endphp
-
-                                        @foreach ($danh_muc as $item)
-                                            @php
-                                                $stt++;
-                                            @endphp
-                                            <tr>
-                                                <td>
-                                                    <span class="custom-checkbox">
-                                                        <input type="checkbox" id="checkbox{{ $stt }}"
-                                                            name="options[]" value="{{ $item->id }}">
-                                                        <label for="checkbox1"></label>
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    {{ $stt }}
-                                                </td>
-                                                <td>
-                                                    {{ $item->ten_danh_muc }}
-                                                </td>
-                                                <td>
-                                                    {{ $item->created_at }}
-                                                </td>
-                                                <td>
-                                                    {{ $item->updated_at }}
-                                                </td>
-                                                <td>
-                                                    <span>
-                                                        <i class="fas fa-edit fa-lg">
-                                                        </i>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -125,6 +78,101 @@
         </div>
 
     </div>
+    <div class="modal fade" id="modal-sua">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Sửa danh mục</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="card-body">
+                            <input type="hidden" name="id">
+                            <div class="form-group">
+                                <label for="_ten_danh_muc">Tên danh mục</label>
+                                <input type="text" class="form-control" id="_ten_danh_muc" name="_ten_danh_muc"
+                                    placeholder="Nhập tên danh mục">
+                                <div class="invalid-feedback" id="_ten_danh_muc"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default btn_close" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" id="sua_danh_muc">Thêm</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#danhsach').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{!! route('danhmuc.danhsach') !!}',
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
+                        data: 'ten_danh_muc',
+                        name: 'ten_danh_muc'
+                    },
+                    {
+                        data: 'created_at',
+                        name: 'created_at'
+                    },
+                    {
+                        data: 'updated_at',
+                        name: 'updated_at'
+                    },
+                    {
+                        data: 'actions',
+                        name: 'actions',
+                        orderable: false,
+                        searchable: false
+                    }
+                ],
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+                "pageLength": 10
+            });
+            $(document).on('click', '.sua_danh_muc', function(e) {
+                let id = $(this).data('id');
+
+                $.ajax({
+                    url: '/admin/danhmuc/' + id,
+                    type: 'GET',
+                    success: function(data) {
+                        $('input[name="id"]').val(data[0].id);
+                        $('#_ten_danh_muc').val(data[0].ten_danh_muc);
+                        $('#modal-sua').modal('show');
+                    }
+                });
+            });
+
+            $('.btn_close').click(function(e) {
+                $('#modal-sua').modal('hide');
+            });
+
+            $('#btn-them').click(function(e) {
+                $('#modal-them').modal('show');
+            })
+        });
+    </script>
 @endsection
 
 @section('footer')

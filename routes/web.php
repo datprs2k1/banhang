@@ -28,6 +28,5 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/', [UserController::class, 'adminDashboard'])->name('admin.dashboard');
         Route::get('/danhmuc/danhsach', [DanhMucController::class, 'danhsach'])->name('danhmuc.danhsach');
         Route::resource('/danhmuc', DanhMucController::class);
-        Route::delete('/danhmuc', [DanhMucController::class, 'xoadachon']);
     });
 });
