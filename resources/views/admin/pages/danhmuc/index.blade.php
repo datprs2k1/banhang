@@ -150,6 +150,7 @@
                 "responsive": true,
                 "pageLength": 10
             });
+
             $(document).on('click', '.sua_danh_muc', function(e) {
                 let id = $(this).data('id');
 

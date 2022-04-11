@@ -3,87 +3,85 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    //
+
+    public function auth(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'email' => 'required|string|email',
+                'password' => 'required|string|min:6',
+            ],
+            [
+                'email.required' => 'Email không được để trống.',
+                'email.email' => 'Email không đúng định dạng.',
+                'email.string' => 'Email phải là chuỗi.',
+                'password.required' => 'Mật khẩu không được để trống.',
+                'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự.',
+                'password.string' => 'Mật khẩu phải là chuỗi ký tự.',
+            ]
+        );
+
+        $remember = $request->remember;
+
+        $cerdentials = $request->only('email', 'password');
+
+        if (Auth::attempt($cerdentials, $remember)) {
+            return response()->json(['message' => 'Đăng nhập thành công.', 'status' => true]);
+        } else {
+            return response()->json(['errors' => [
+                'error' => 'Email hoặc mật khẩu không đúng.'
+            ]], 422);
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function login()
     {
-        //
+        return view('pages.login.index');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function register(Request $request)
     {
-        //
-    }
+        $request->validate(
+            [
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => 'required|string|min:6|confirmed',
+            ],
+            [
+                'name.required' => 'Tên không được để trống.',
+                'name.string' => 'Tên phải là chuỗi.',
+                'name.max' => 'Tên tối đa 255 ký tự.',
+                'email.required' => 'Email để được để trống.',
+                'email.string' => 'Email phải là chuỗi.',
+                'email.email' => 'Email không đúng định dạng.',
+                'email.max' => 'Email tối đa 255 ký tự.',
+                'email.unique' => 'Email đã tồn tại.',
+                'password.required' => 'Mật khẩu để được để trống.',
+                'password.string' => 'Mật khẩu phải là chuỗi.',
+                'password.min' => 'Mật khẩu tối thiểu 6 ký tự.',
+                'password.confirmed' => 'Mật khẩu không khớp.',
+            ]
+        );
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        $user->assignRole('user');
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    public function adminDashboard()
-    {
-        return view('admin.pages.dashboard.index');
+        return response()->json([
+            'message' => 'Đăng ký thành công.',
+        ], 200);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use App\Models\DanhMuc;
 
 class Header extends Component
 {
@@ -23,6 +24,8 @@ class Header extends Component
      */
     public function render()
     {
-        return view('components.header');
+        $danh_muc = DanhMuc::all();
+
+        return view('components.header', compact('danh_muc'));
     }
 }

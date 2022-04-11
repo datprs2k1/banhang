@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DanhMucController;
@@ -19,13 +19,16 @@ use Spatie\Permission\Contracts\Role;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::post('/login', [UserController::class, 'auth'])->name('login');
+Route::post('/register', [UserController::class, 'register'])->name('register');
 
 
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('/login', [AuthController::class, 'login'])->name('admin.login');
-    Route::post('/login', [AuthController::class, 'authAdmin'])->name('admin.authAdmin');
+    Route::get('/login', [AdminController::class, 'login'])->name('admin.login');
+    Route::post('/login', [AdminController::class, 'auth'])->name('admin.authAdmin');
     Route::middleware('admin')->group(function () {
-        Route::get('/', [UserController::class, 'adminDashboard'])->name('admin.dashboard');
+        Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::get('/danhmuc/danhsach', [DanhMucController::class, 'danhsach'])->name('danhmuc.danhsach');
         Route::resource('/danhmuc', DanhMucController::class);
     });

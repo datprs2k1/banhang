@@ -27,7 +27,7 @@ $('#loginAdmin').click(function (e) {
     $('input[name="password"]').next().next().html('');
 
     $.ajax({
-        url: window.location.href,
+        url: window.location.protocol + '//' + window.location.host + '/admin/login',
         type: 'POST',
         data: {
             email: email,
@@ -229,6 +229,120 @@ $(document).on('click', '.xoa_danh_muc', function (e) {
                         button: "OK!",
                     });
                 }
+            });
+        }
+    });
+});
+
+$('#btn-dangnhap').on('click', function (e) {
+
+    e.preventDefault();
+
+    let email = $('input[name="_email"]').val();
+    let password = $('input[name="_password"]').val();
+
+    $('input[name="_email"]').removeClass('is-invalid');
+    $('input[name="_email"]').next().html('');
+    $('input[name="_password"]').removeClass('is-invalid');
+    $('input[name="_password"]').next().html('');
+
+    $.ajax({
+        url: window.location.protocol + '//' + window.location.host + '/login',
+        type: 'POST',
+        data: {
+            email: email,
+            password: password
+        }, beforeSend: function () {
+            $('#btn-dangnhap').html(
+                '<i class="fa fa-spinner fa-spin"></i> Đang đăng nhập...');
+        }, complete: function () {
+            $('#btn-dangnhap').html('Đăng nhập');
+        }, success: function (data) {
+            Swal.fire({
+                title: "Thành công!",
+                text: "Đăng nhập thành công!",
+                icon: "success",
+                button: "OK!",
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = window.location.protocol + '//' + window.location.host;
+                }
+            });
+        }, error: function (error) {
+            let responseText = JSON.parse(error.responseText);
+            let errors = responseText.errors;
+            $.each(errors, (key, value) => {
+                if (key == 'error') {
+                    Swal.fire({
+                        title: "Lỗi!",
+                        text: value,
+                        icon: "error",
+                        button: "OK!",
+                    });
+                }
+                $('input[name="_' + key + '"]').addClass('is-invalid');
+                $('input[name="_' + key + '"]').next().html(value);
+            });
+        }
+    });
+});
+
+$('#btn-dangky').on('click', function (e) {
+
+    e.preventDefault();
+
+    let name = $('input[name="name"]').val();
+    let email = $('input[name="email"]').val();
+    let password = $('input[name="password"]').val();
+    let password_confirmation = $('input[name="password_confirmation"]').val();
+
+    $('input[name="name"]').removeClass('is-invalid');
+    $('input[name="name"]').next().html('');
+    $('input[name="email"]').removeClass('is-invalid');
+    $('input[name="email"]').next().html('');
+    $('input[name="password"]').removeClass('is-invalid');
+    $('input[name="password"]').next().html('');
+    $('input[name="password_confirmation"]').removeClass('is-invalid');
+    $('input[name="password_confirmation"]').next().html('');
+
+    $.ajax({
+        url: window.location.protocol + '//' + window.location.host + '/register',
+        type: 'POST',
+        data: {
+            name: name,
+            email: email,
+            password: password,
+            password_confirmation: password_confirmation
+        }, beforeSend: function () {
+            $('#btn-dangky').html(
+                '<i class="fa fa-spinner fa-spin"></i> Đang đăng ký...');
+        }, complete: function () {
+            $('#btn-dangky').html('Đăng ký');
+        }, success: function (data) {
+            Swal.fire({
+                title: "Thành công!",
+                text: "Đăng ký thành công!",
+                icon: "success",
+                button: "OK!",
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = window.location.protocol + '//' + window.location.host;
+                }
+            });
+        }, error: function (error) {
+            let responseText = JSON.parse(error.responseText);
+            let errors = responseText.errors;
+            $.each(errors, (key, value) => {
+                if (key == 'error') {
+                    Swal.fire({
+                        title: "Lỗi!",
+                        text: value,
+                        icon: "error",
+                        button: "OK!",
+                    });
+                }
+                $('input[name="' + key + '"]').addClass('is-invalid');
+                $('input[name="' + key + '"]').next().html(value);
             });
         }
     });
