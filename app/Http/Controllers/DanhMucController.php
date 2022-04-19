@@ -73,9 +73,10 @@ class DanhMucController extends Controller
         //
         $danh_muc = DanhMuc::find($id);
 
-        return response()->json([
-            $danh_muc
-        ], 200);
+        return response()->json(
+            $danh_muc,
+            200
+        );
     }
 
     /**

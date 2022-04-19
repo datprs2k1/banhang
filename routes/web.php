@@ -5,7 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DanhMucController;
-use Spatie\Permission\Contracts\Role;
+use App\Http\Controllers\NhaCungCapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +31,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::get('/danhmuc/danhsach', [DanhMucController::class, 'danhsach'])->name('danhmuc.danhsach');
         Route::resource('/danhmuc', DanhMucController::class);
+        Route::get('/nhacungcap/danhsach', [NhaCungCapController::class, 'danhsach'])->name('nhacungcap.danhsach');
+        Route::resource('/nhacungcap', NhaCungCapController::class);
     });
 });

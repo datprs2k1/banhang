@@ -35,8 +35,6 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Tên danh mục</th>
-                                            <th>Ngày tạo</th>
-                                            <th>Ngày sửa</th>
                                             <th>Hành động</th>
                                         </tr>
                                     </thead>
@@ -127,14 +125,6 @@
                         name: 'ten_danh_muc'
                     },
                     {
-                        data: 'created_at',
-                        name: 'created_at'
-                    },
-                    {
-                        data: 'updated_at',
-                        name: 'updated_at'
-                    },
-                    {
                         data: 'actions',
                         name: 'actions',
                         orderable: false,
@@ -158,8 +148,8 @@
                     url: '/admin/danhmuc/' + id,
                     type: 'GET',
                     success: function(data) {
-                        $('input[name="id"]').val(data[0].id);
-                        $('#_ten_danh_muc').val(data[0].ten_danh_muc);
+                        $('input[name="id"]').val(data.id);
+                        $('#_ten_danh_muc').val(data.ten_danh_muc);
                         $('#modal-sua').modal('show');
                     }
                 });

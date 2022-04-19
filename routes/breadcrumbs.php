@@ -22,3 +22,18 @@ Breadcrumbs::for('danhmuc.edit', function ($trail, $id) {
     $trail->parent('danhmuc.index');
     $trail->push('Sửa', route('danhmuc.edit', $id));
 });
+
+Breadcrumbs::for('nhacungcap.index', function ($trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Nhà cung cấp', route('nhacungcap.index'));
+});
+
+Breadcrumbs::for('nhacungcap.create', function ($trail) {
+    $trail->parent('nhacungcap.index');
+    $trail->push('Thêm mới', route('nhacungcap.create'));
+});
+
+Breadcrumbs::for('nhacungcap.edit', function ($trail, $id) {
+    $trail->parent('nhacungcap.index');
+    $trail->push('Sửa', route('nhacungcap.edit', $id));
+});

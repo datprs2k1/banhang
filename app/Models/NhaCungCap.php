@@ -5,14 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DanhMuc extends Model
+class NhaCungCap extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'ten_danh_muc',
-        'created_at',
-        'updated_at',
+        'logo',
+        'ten_nha_cung_cap',
+        'gioi_thieu',
+        'dia_chi',
+        'phone',
+        'email',
+        'website',
     ];
 
     protected $hidden = [
@@ -22,7 +26,7 @@ class DanhMuc extends Model
 
     protected $primaryKey = 'id';
 
-    protected $table = 'danh_muc';
+    protected $table = 'nha_cung_cap';
 
     protected $casts = [
         'created_at' => 'datetime:d/m/Y H:i:s',
