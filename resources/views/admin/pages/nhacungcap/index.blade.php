@@ -33,9 +33,9 @@
                                 <table id="danhsach" class="table table-bordered table-striped text-center">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>STT</th>
                                             <th>Logo</th>
-                                            <th>Tên danh mục</th>
+                                            <th>Tên nhà cung cấp</th>
                                             <th>Giới thiệu</th>
                                             <th>Địa chỉ</th>
                                             <th>Số điện thoại</th>
@@ -112,7 +112,7 @@
                     </form>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-default btn_close" data-dismiss="modal">Đóng</button>
                     <button type="button" class="btn btn-primary" id="them_nha_cung_cap">Thêm</button>
                 </div>
             </div>
@@ -280,13 +280,6 @@
                 });
             });
 
-            $('.btn_close').click(function(e) {
-                $('#modal-sua').modal('hide');
-            });
-
-            $('#btn-them').click(function(e) {
-                $('#modal-them').modal('show');
-            });
 
         });
     </script>

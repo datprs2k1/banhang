@@ -33,7 +33,7 @@
                                 <table id="danhsach" class="table table-bordered table-striped text-center">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>STT</th>
                                             <th>Tên danh mục</th>
                                             <th>Hành động</th>
                                         </tr>
@@ -68,7 +68,7 @@
                     </form>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-default btn_close" data-dismiss="modal">Đóng</button>
                     <button type="button" class="btn btn-primary" id="them_danh_muc">Thêm</button>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default btn_close" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary" id="sua_danh_muc">Thêm</button>
+                    <button type="button" class="btn btn-primary" id="sua_danh_muc">Sửa</button>
                 </div>
             </div>
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\View\Components\Breadcrumb;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
@@ -36,4 +37,19 @@ Breadcrumbs::for('nhacungcap.create', function ($trail) {
 Breadcrumbs::for('nhacungcap.edit', function ($trail, $id) {
     $trail->parent('nhacungcap.index');
     $trail->push('Sửa', route('nhacungcap.edit', $id));
+});
+
+Breadcrumbs::for('sanpham.index', function ($trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Sản phẩm', route('sanpham.index'));
+});
+
+Breadcrumbs::for('sanpham.create', function ($trail) {
+    $trail->parent('sanpham.index');
+    $trail->push('Thêm mới', route('sanpham.create'));
+});
+
+Breadcrumbs::for('sanpham.edit', function ($trail, $id) {
+    $trail->parent('sanpham.index');
+    $trail->push('Sửa', route('sanpham.edit', $id));
 });

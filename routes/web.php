@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DanhMucController;
 use App\Http\Controllers\NhaCungCapController;
+use App\Http\Controllers\SanPhamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +34,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::resource('/danhmuc', DanhMucController::class);
         Route::get('/nhacungcap/danhsach', [NhaCungCapController::class, 'danhsach'])->name('nhacungcap.danhsach');
         Route::resource('/nhacungcap', NhaCungCapController::class);
+        Route::get('/sanpham/danhsach', [SanPhamController::class, 'danhsach'])->name('sanpham.danhsach');
+        Route::resource('/sanpham', SanPhamController::class);
     });
 });
