@@ -42,9 +42,16 @@ return [
             'visibility' => 'public',
         ],
 
-        'images' => [
+        'sanpham' => [
             'driver' => 'local',
-            'root' => storage_path('../public/images'),
+            'root' => storage_path('../public/images/sanpham'),
+            'url' => env('APP_URL') . '/storage',
+            'visibility' => 'public',
+        ],
+
+        'nhacungcap' => [
+            'driver' => 'local',
+            'root' => storage_path('../public/images/nhacungcap'),
             'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
         ],

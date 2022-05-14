@@ -241,7 +241,7 @@
                         "targets": 1,
                         "data": "description",
                         "render": function(data, type, row, meta) {
-                            return '<img src="/images/' + data +
+                            return '<img src="/images/nhacungcap' + data +
                                 '" width="100px" height="100px">';
                         },
                     },
@@ -274,10 +274,28 @@
                         $('input[name="_phone"]').val(data.phone);
                         $('input[name="_email"]').val(data.email);
                         $('input[name="_website"]').val(data.website);
-                        $('#_img-logo').attr('src', '/images/' + data.logo);
+                        $('#_img-logo').attr('src', '/images/nhacungcap' + data.logo);
                         $('#modal-sua').modal('show');
                     }
                 });
+            });
+
+            var file;
+
+            $('input[name="logo"]').on('change', function(e) {
+                file = e.target.files[0];
+
+                let src = window.URL.createObjectURL(file);
+                $('#img-logo').attr('src', src);
+
+            });
+
+            $('input[name="_logo"]').on('change', function(e) {
+                file = e.target.files[0];
+
+                let src = window.URL.createObjectURL(file);
+                $('#_img-logo').attr('src', src);
+
             });
 
 

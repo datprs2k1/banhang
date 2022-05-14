@@ -291,7 +291,7 @@
                         "targets": 1,
                         "data": "description",
                         "render": function(data, type, row, meta) {
-                            return '<img src="/images/' + data +
+                            return '<img src="/images/sanpham/' + data +
                                 '" width="100px" height="100px">';
                         },
                     },
@@ -326,7 +326,7 @@
                         $('#_don_vi_tinh').val(data.don_vi_tinh);
                         $('#_id_nha_cung_cap').val(data.id_nha_cung_cap);
                         $('#_id_danh_muc').val(data.id_danh_muc);
-                        $('#_img-hinh-anh').attr('src', '/images/' + data.hinh_anh);
+                        $('#_img-hinh-anh').attr('src', '/images/sanpham/' + data.hinh_anh);
                         $('#sua_san_pham').attr('data-id', data.id);
                         $('#sua_san_pham').attr('data-url', '/admin/sanpham/' + data.id);
                         $('#sua_san_pham').attr('data-method', 'PUT');

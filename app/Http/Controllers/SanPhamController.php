@@ -73,7 +73,7 @@ class SanPhamController extends Controller
 
         $file = $request->hinh_anh;
         $name = time() . '_' . $file->getClientOriginalName();
-        Storage::disk('images')->put($name, File::get($file));
+        Storage::disk('sanpham')->put($name, File::get($file));
 
         $san_pham = new SanPham();
         $san_pham->ten_san_pham = $request->ten_san_pham;
@@ -165,13 +165,13 @@ class SanPhamController extends Controller
 
         if ($request->hasFile('hinh_anh')) {
 
-            if (Storage::disk('images')->exists($san_pham->hinh_anh)) {
-                Storage::disk('images')->delete($san_pham->hinh_anh);
+            if (Storage::disk('sanpham')->exists($san_pham->hinh_anh)) {
+                Storage::disk('sanpham')->delete($san_pham->hinh_anh);
             }
 
             $file = $request->hinh_anh;
             $name = time() . '_' . $file->getClientOriginalName();
-            Storage::disk('images')->put($name, File::get($file));
+            Storage::disk('sanpham')->put($name, File::get($file));
             $san_pham->hinh_anh = $name;
         }
 

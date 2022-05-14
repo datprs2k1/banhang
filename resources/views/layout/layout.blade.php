@@ -17,6 +17,10 @@
         rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel='stylesheet'
+        href='https://ckthemes.com/flipmart/v2/wp-content/themes/flipmart/assets/css/owl-carousel-min.css?ver=5.6.8'
+        media='all' />
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
@@ -41,6 +45,7 @@
     <script src="{{ asset('js/jquery.easing-1.3.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
 
+    @yield('script')
 </body>
 
 </html>

@@ -256,24 +256,6 @@ $(document).on('click', '.xoa_danh_muc', function (e) {
     });
 });
 
-var file;
-
-$('input[name="logo"]').on('change', function (e) {
-    file = e.target.files[0];
-
-    let src = window.URL.createObjectURL(file);
-    $('#img-logo').attr('src', src);
-
-});
-
-$('input[name="_logo"]').on('change', function (e) {
-    file = e.target.files[0];
-
-    let src = window.URL.createObjectURL(file);
-    $('#_img-logo').attr('src', src);
-
-});
-
 
 $('#them_nha_cung_cap').click(function (e) {
 

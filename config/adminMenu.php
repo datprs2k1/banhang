@@ -24,5 +24,17 @@ return [
                 'icon' => 'fa fa-list',
             ],
         ],
+    ],
+    [
+        'name' => 'Quản lý sản phẩm',
+        'icon' => 'fa fa-list',
+        'route' => 'admin.pages.sanpham.index',
+        'children' => [
+            [
+                'name' => 'Danh sách',
+                'route' => 'sanpham.index',
+                'icon' => 'fa fa-list',
+            ],
+        ],
     ]
 ];

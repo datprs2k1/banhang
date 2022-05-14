@@ -76,7 +76,7 @@ class NhaCungCapController extends Controller
 
         $file = $request->logo;
         $name = time() . '_' . $file->getClientOriginalName();
-        Storage::disk('images')->put($name, File::get($file));
+        Storage::disk('nhacungcap')->put($name, File::get($file));
 
         $nha_cung_cap = new NhaCungCap();
         $nha_cung_cap->ten_nha_cung_cap = $request->ten_nha_cung_cap;
@@ -165,13 +165,13 @@ class NhaCungCapController extends Controller
 
         if ($request->hasFile('logo')) {
 
-            if (Storage::disk('images')->exists($nha_cung_cap->logo)) {
-                Storage::disk('images')->delete($nha_cung_cap->logo);
+            if (Storage::disk('nhacungcap')->exists($nha_cung_cap->logo)) {
+                Storage::disk('nhacungcap')->delete($nha_cung_cap->logo);
             }
 
             $file = $request->logo;
             $name = time() . '_' . $file->getClientOriginalName();
-            Storage::disk('images')->put($name, File::get($file));
+            Storage::disk('nhacungcap')->put($name, File::get($file));
             $nha_cung_cap->logo = $name;
         }
 
