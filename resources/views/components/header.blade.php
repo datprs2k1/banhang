@@ -11,10 +11,18 @@
                     <div class="header-top-inner">
                         <div class="cnt-account">
                             <ul class="list-unstyled">
-                                <li><a href="#"><i class="icon fa fa-shopping-cart"></i>Giỏ hàng</a>
-                                </li>
-                                <li><a href="#"><i class="icon fa fa-check"></i>Thanh toán</a></li>
-                                <li><a href="#"><i class="icon fa fa-lock"></i>Đăng nhập</a></li>
+                                @if (Auth::check())
+                                    <li><a href="#"><i class="icon fa fa-user"></i>Tài khoản</a></li>
+                                    <li><a href="#"><i class="icon fa fa-shopping-cart"></i>Giỏ
+                                            hàng</a></li>
+                                    <li><a href=""><i class=" icon fa fa-list-alt"></i>Hoá đơn</a></li>
+                                    <li>
+                                    @else
+                                    <li><a href="#"><i class="icon fa fa-shopping-cart"></i>Giỏ hàng</a>
+                                    </li>
+                                    <li><a href="#"><i class="icon fa fa-check"></i>Thanh toán</a></li>
+                                    <li><a href="#"><i class="icon fa fa-lock"></i>Đăng nhập</a></li>
+                                @endif
                             </ul>
                         </div><!-- /.cnt-account -->
 
@@ -30,7 +38,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-1 logo-holder">
                             <!-- ============================================================= LOGO ============================================================= -->
                             <div class="logo">
-                                <a href="#">
+                                <a href="{{ route('home') }}">
 
                                     <img src="{{ asset('images/shop-icon-png-6.jpg') }}" alt="" width="70%">
 
@@ -74,7 +82,7 @@
                                         <div class="basket">
                                             <i class="fa-solid fa-cart-shopping"></i>
                                         </div>
-                                        <div class="basket-item-count"><span class="count">0</span>
+                                        <div class="basket-item-count"><span class="count" id="count"></span>
                                         </div>
                                         <div class="total-price-basket">
                                             <span class="lbl">Giỏ hàng</span>
@@ -85,41 +93,20 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <div class="cart-item product-summary">
-                                            <div class="row">
-                                                <div class="col-xs-4">
-                                                    <div class="image">
-                                                        <a href="#"><img src="" alt=""></a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-7">
-
-                                                    <h3 class="name">
-                                                        <a href="">
-                                                            A <br>x 4
-                                                        </a>
-                                                    </h3>
-                                                    <div class="price">
-                                                        10</div>
-                                                </div>
-                                                <div class="col-xs-1 action">
-                                                    <a href="#"><i class="fa fa-trash"></i></a>
-                                                </div>
-                                            </div>
+                                        <div class="cart-item product-summary" id="gio_hang">
                                         </div><!-- /.cart-item -->
                                         <div class="clearfix"></div>
-                                        <hr>
-
                                         <div class="clearfix cart-total">
                                             <div class="pull-right">
 
-                                                <span class="text">Tổng :</span>10 VNĐ
+                                                <span class="text" id="tong_tien">
                                                 </span>
 
                                             </div>
                                             <div class="clearfix"></div>
 
-                                            <a href="#" class="btn btn-upper btn-primary btn-block m-t-20">Thanh
+                                            <a href="{{ url('/giohang') }}"
+                                                class="btn btn-upper btn-primary btn-block m-t-20">Thanh
                                                 toán</a>
                                         </div><!-- /.cart-total-->
 
@@ -154,12 +141,13 @@
                                 <div class="nav-outer">
                                     <ul class="nav navbar-nav">
                                         <li class="dropdown yamm-fw">
-                                            <a href="#">Home</a>
+                                            <a href="{{ route('home') }}">Home</a>
                                         </li>
 
                                         @foreach ($danh_muc as $item)
                                             <li class="dropdown yamm-fw">
-                                                <a href="#">{{ $item->ten_danh_muc }}</a>
+                                                <a
+                                                    href="/danhmuc/{{ Str::slug($item->ten_danh_muc) . '_' . $item->id }}">{{ $item->ten_danh_muc }}</a>
                                             </li>
                                         @endforeach
                                     </ul><!-- /.navbar-nav -->

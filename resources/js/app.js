@@ -267,7 +267,7 @@ $('#them_nha_cung_cap').click(function (e) {
     let phone = $('input[name="phone"]').val();
     let email = $('input[name="email"]').val();
     let website = $('input[name="website"]').val();
-    let logo = file;
+    let logo = $('input[name="logo"]')[0].files[0];
 
     let formData = new FormData();
     formData.append('ten_nha_cung_cap', ten_nha_cung_cap);
@@ -363,7 +363,7 @@ $('#sua_nha_cung_cap').on('click', function (e) {
     let phone = $('input[name="_phone"]').val();
     let email = $('input[name="_email"]').val();
     let website = $('input[name="_website"]').val();
-    let logo = file;
+    let logo = $('input[name="_logo"]')[0].files[0];
 
     $('input[name="_ten_nha_cung_cap"]').removeClass('is-invalid');
     $('input[name="_ten_nha_cung_cap"]').next().html('');
@@ -735,11 +735,10 @@ $('#btn-dangnhap').on('click', function (e) {
                 title: "Thành công!",
                 text: "Đăng nhập thành công!",
                 icon: "success",
-                button: "OK!",
-            }).then((result) => {
-                if (result.value) {
-                    window.location.href = window.location.protocol + '//' + window.location.host;
-                }
+                showConfirmButton: false,
+                timer: 1000
+            }).then(() => {
+                history.go(-1);
             });
         }, error: function (error) {
             let responseText = JSON.parse(error.responseText);
@@ -796,11 +795,10 @@ $('#btn-dangky').on('click', function (e) {
                 title: "Thành công!",
                 text: "Đăng ký thành công!",
                 icon: "success",
-                button: "OK!",
-            }).then((result) => {
-                if (result.value) {
-                    window.location.href = window.location.protocol + '//' + window.location.host;
-                }
+                showConfirmButton: false,
+                timer: 1000
+            }).then(() => {
+                history.go(-1);
             });
         }, error: function (error) {
             let responseText = JSON.parse(error.responseText);
@@ -821,3 +819,171 @@ $('#btn-dangky').on('click', function (e) {
     });
 });
 
+$(document).on('click', '#them_gio_hang', function (e) {
+    let id_san_pham = $(this).data('id');
+    let so_luong = $('input[name="so_luong"]').val() ? $('input[name="so_luong"]').val() : 1;
+
+    let formData = new FormData();
+    formData.append('id_san_pham', id_san_pham);
+    formData.append('so_luong', so_luong);
+
+    $.ajax({
+        url: window.location.protocol + '//' + window.location.host + '/giohang',
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        beforeSend: function () {
+
+        },
+        complete: function () {
+            giohang();
+
+        },
+        success: function (data) {
+            Swal.fire({
+                title: "Thành công!",
+                text: "Thêm sản phẩm vào giỏ hàng thành công!",
+                icon: "success",
+                timer: 1000,
+                showConfirmButton: false,
+            });
+        },
+        error: function (httpObj, textStatus) {
+            if (httpObj.status == 401) {
+                window.location.href = window.location.protocol + '//' + window.location.host + '/login';
+            }
+        }
+    });
+
+});
+
+const giohang = () => {
+    $('#gio_hang').empty();
+    $('#tong_tien').empty();
+    $('#tong_tien_a').empty();
+    $('#count').empty();
+    $('#danh_sach_gio_hang').empty();
+    const currency = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' });
+    $.ajax({
+        url: window.location.protocol + '//' + window.location.host + '/giohang/danhsach',
+        type: 'GET',
+        success: function (data) {
+            let tong = 0;
+            $('#count').append(data.length);
+            $.each(data, (key, value) => {
+                let id = value.id;
+                let ten_san_pham = value.san_pham.ten_san_pham;
+                let gia_ban = value.san_pham.gia_ban;
+                let so_luong = value.so_luong;
+                let hinh_anh = value.san_pham.hinh_anh;
+                let tong_tien = value.san_pham.gia_ban * value.so_luong;
+                tong += tong_tien;
+
+                let html = `<div class="row" id="item_gio_hang">
+                <div class="col-xs-4">
+                    <div class="image">
+                        <a href="#"><img src="`+ window.location.protocol + '//' + window.location.host + '/images/sanpham/' + hinh_anh + `" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-xs-7">
+
+                    <h3 class="name">
+                        <a href="">
+                            `+ ten_san_pham + ` <br>x ` + so_luong + `
+                        </a>
+                    </h3>
+                    <div class="price">
+                        `+ currency.format(tong_tien) + `</div>
+                </div>
+                <div class="col-xs-1 action">
+                    <i class="fa fa-trash" data-id="` + id + `" id="xoa_gio_hang"></i>
+                </div>
+            </div><hr>`;
+                $('#gio_hang').append(html);
+                let danh_sach_gio_hang_html = `<tr data-id="`+id+`">
+                <td class="romove-item"><div title="Xoá" class="icon"><i class="fa fa-trash" data-id="` + id + `" id="xoa_gio_hang"></i></div></td>
+                <td class="cart-image">
+                    <a class="entry-thumbnail" href="">
+                        <img src="`+ window.location.protocol + '//' + window.location.host + '/images/sanpham/' + hinh_anh + `" alt="">
+                    </a>
+                </td>
+                <td class="cart-product-name-info">
+                    <h4 class='cart-product-description' data-id ="`+ id + ` id="item_gio_hang""><a href=""><b>` + ten_san_pham + `</b></a></h4>
+                </td>
+                <td class="cart-product-quantity">
+                    <div class="quant-input">
+
+                        <input type="number" name="" id="so_luong" data-id="`+ id + `" value="` + so_luong + `" min="1">
+                    </div>
+                </td>
+                <td>2</td>
+                <td class="cart-product-sub-total"><span class="cart-sub-total-price">`+ currency.format(gia_ban) + `</span></td>
+                <td class="cart-product-grand-total"><span class="cart-grand-total-price">`+ currency.format(tong_tien) + `</span></td>
+            </tr>`;
+                $('#danh_sach_gio_hang').append(danh_sach_gio_hang_html);
+            });
+
+            let tonghtml = `<span class="price">Tổng tiền: ` + currency.format(tong) + `</span>`
+            $('#tong_tien').append(tonghtml);
+            $('#tong_tien_a').append(currency.format(tong));
+
+        },
+        error: (httpObj) => {
+            if (httpObj.status == 401) {
+                $('#count').append(0);
+                $('#gio_hang').append('Giỏ hàng trống');
+            }
+        }
+    });
+};
+
+$(document).on('click', '#xoa_gio_hang', function (e) {
+    let id = $(this).data('id');
+    $.ajax({
+        url: window.location.protocol + '//' + window.location.host + '/giohang/' + id,
+        type: 'DELETE',
+        complete: function () {
+            giohang();
+        },
+        success: function (data) {
+            Swal.fire({
+                title: "Thành công!",
+                text: "Xóa sản phẩm thành công!",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1000,
+            });
+        },
+        error: function (httpObj, textStatus) {
+            if (httpObj.status == 401) {
+                window.location.href = window.location.protocol + '//' + window.location.host + '/login';
+            }
+        }
+    })
+});
+
+$(document).on('change', '#so_luong', function () {
+    let id = $(this).data('id');
+    let so_luong = $(this).val();
+
+    let formData = new FormData();
+    formData.append('so_luong', so_luong);
+    formData.append('_method', 'PUT');
+
+    $.ajax({
+        url: window.location.protocol + '//' + window.location.host +
+            '/giohang/' + id,
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        complete: function () {
+            giohang();
+        }
+    });
+});
+
+window.onload = () => {
+    giohang();
+};

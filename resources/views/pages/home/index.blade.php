@@ -74,7 +74,8 @@
                                                                     <div class="product">
                                                                         <div class="product-image">
                                                                             <div class="image">
-                                                                                <a href="/sanpham/{{ $sanpham->id }}">
+                                                                                <a
+                                                                                    href="/sanpham/{{ Str::slug($sanpham->ten_san_pham) . '_' . $sanpham->id }}">
                                                                                     <img src="{{ asset('images/sanpham/' . $sanpham->hinh_anh) }}"
                                                                                         alt="">
                                                                                 </a>
@@ -98,7 +99,8 @@
                                                                         </div><!-- /.product-info -->
                                                                         <div class="cart clearfix animate-effect">
                                                                             <div class="action">
-                                                                                <a href="/themgiohang/{{ $sanpham->id }}">
+                                                                                <div id="them_gio_hang"
+                                                                                    data-id="{{ $sanpham->id }}">
                                                                                     <ul class="list-unstyled">
                                                                                         <li
                                                                                             class="add-cart-button btn-group">
@@ -111,199 +113,39 @@
                                                                                             </button>
                                                                                         </li>
                                                                                     </ul>
-                                                                                </a>
-                                                                            </div><!-- /.action -->
-                                                                        </div><!-- /.cart -->
-                                                                    </div><!-- /.product -->
-                                                                </div><!-- /.products -->
+                                                                                    </a>
+                                                                                </div><!-- /.action -->
+                                                                            </div><!-- /.cart -->
+                                                                        </div><!-- /.product -->
+                                                                    </div><!-- /.products -->
+                                                                </div>
                                                             </div>
+
                                                         </div>
                                                     @endforeach
 
                                                 </div>
-                                            </div>
-                                        </div><!-- /.home-owl-carousel -->
-                                    </div><!-- /.product-slider -->
-                                </div><!-- /.tab-pane -->
+                                            </div><!-- /.home-owl-carousel -->
+                                        </div><!-- /.product-slider -->
+                                    </div><!-- /.tab-pane -->
 
-                            </div><!-- /.tab-content -->
-                        </div><!-- /.scroll-tabs -->
+                                </div><!-- /.tab-content -->
+                            </div><!-- /.scroll-tabs -->
+                            <!-- ============================================== SCROLL TABS : END ============================================== -->
+
+                        </div><!-- /.homebanner-holder -->
                     @endforeach
-                    <!-- ============================================== SCROLL TABS : END ============================================== -->
 
-                </div><!-- /.homebanner-holder -->
-                <!-- ============================================== CONTENT : END ============================================== -->
-                <!-- ============================================== BRANDS CAROUSEL ============================================== -->
-                <div id="brands-carousel" class="logo-slider wow fadeInUp">
+                    <!-- ============================================== CONTENT : END ============================================== -->
+                    <!-- ============================================== BRANDS CAROUSEL ============================================== -->
 
-                    <div class="logo-slider-inner">
-                        <div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
-                            <div class="item m-t-15">
-                                <a href="#" class="image">
-                                    <img data-echo="assets/images/brands/brand1.png" src="assets/images/blank.gif" alt="">
-                                </a>
-                            </div>
-                            <!--/.item-->
+                    <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
+                </div><!-- /.container -->
+            </div><!-- /#top-banner-and-menu -->
+        </div><!-- /.row -->
+        <!-- ============================================== BRANDS CAROUSEL ============================================== -->
 
-                            <div class="item m-t-10">
-                                <a href="#" class="image">
-                                    <img data-echo="assets/images/brands/brand2.png" src="assets/images/blank.gif" alt="">
-                                </a>
-                            </div>
-                            <!--/.item-->
-
-                            <div class="item">
-                                <a href="#" class="image">
-                                    <img data-echo="assets/images/brands/brand3.png" src="assets/images/blank.gif" alt="">
-                                </a>
-                            </div>
-                            <!--/.item-->
-
-                            <div class="item">
-                                <a href="#" class="image">
-                                    <img data-echo="assets/images/brands/brand4.png" src="assets/images/blank.gif" alt="">
-                                </a>
-                            </div>
-                            <!--/.item-->
-
-                            <div class="item">
-                                <a href="#" class="image">
-                                    <img data-echo="assets/images/brands/brand5.png" src="assets/images/blank.gif" alt="">
-                                </a>
-                            </div>
-                            <!--/.item-->
-
-                            <div class="item">
-                                <a href="#" class="image">
-                                    <img data-echo="assets/images/brands/brand6.png" src="assets/images/blank.gif" alt="">
-                                </a>
-                            </div>
-                            <!--/.item-->
-
-                            <div class="item">
-                                <a href="#" class="image">
-                                    <img data-echo="assets/images/brands/brand2.png" src="assets/images/blank.gif" alt="">
-                                </a>
-                            </div>
-                            <!--/.item-->
-
-                            <div class="item">
-                                <a href="#" class="image">
-                                    <img data-echo="assets/images/brands/brand4.png" src="assets/images/blank.gif" alt="">
-                                </a>
-                            </div>
-                            <!--/.item-->
-
-                            <div class="item">
-                                <a href="#" class="image">
-                                    <img data-echo="assets/images/brands/brand1.png" src="assets/images/blank.gif" alt="">
-                                </a>
-                            </div>
-                            <!--/.item-->
-
-                            <div class="item">
-                                <a href="#" class="image">
-                                    <img data-echo="assets/images/brands/brand5.png" src="assets/images/blank.gif" alt="">
-                                </a>
-                            </div>
-                            <!--/.item-->
-                        </div><!-- /.owl-carousel #logo-slider -->
-                    </div><!-- /.logo-slider-inner -->
-
-                </div><!-- /.logo-slider -->
-                <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
-            </div><!-- /.container -->
-        </div><!-- /#top-banner-and-menu -->
-    </div><!-- /.row -->
-    <!-- ============================================== BRANDS CAROUSEL ============================================== -->
-    <div id="brands-carousel" class="logo-slider wow fadeInUp">
-
-        <div class="logo-slider-inner">
-            <div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
-                <div class="item m-t-15">
-                    <a href="#" class="image">
-                        <img data-echo="{{ asset('images/brands/brand1.png') }}" src="{{ asset('images/blank.gif') }}"
-                            alt="">
-                    </a>
-                </div>
-                <!--/.item-->
-
-                <div class="item m-t-10">
-                    <a href="#" class="image">
-                        <img data-echo="{{ asset('images/brands/brand2.png') }}" src="{{ asset('images/blank.gif') }}"
-                            alt="">
-                    </a>
-                </div>
-                <!--/.item-->
-
-                <div class="item">
-                    <a href="#" class="image">
-                        <img data-echo="{{ asset('images/brands/brand3.png') }}" src="{{ asset('images/blank.gif') }}"
-                            alt="">
-                    </a>
-                </div>
-                <!--/.item-->
-
-                <div class="item">
-                    <a href="#" class="image">
-                        <img data-echo="{{ asset('images/brands/brand4.png') }}" src="{{ asset('images/blank.gif') }}"
-                            alt="">
-                    </a>
-                </div>
-                <!--/.item-->
-
-                <div class="item">
-                    <a href="#" class="image">
-                        <img data-echo="{{ asset('images/brands/brand5.png') }}" src="{{ asset('images/blank.gif') }}"
-                            alt="">
-                    </a>
-                </div>
-                <!--/.item-->
-
-                <div class="item">
-                    <a href="#" class="image">
-                        <img data-echo="{{ asset('images/brands/brand6.png') }}" src="{{ asset('images/blank.gif') }}"
-                            alt="">
-                    </a>
-                </div>
-                <!--/.item-->
-
-                <div class="item">
-                    <a href="#" class="image">
-                        <img data-echo="{{ asset('images/brands/brand2.png') }}" src="{{ asset('images/blank.gif') }}"
-                            alt="">
-                    </a>
-                </div>
-                <!--/.item-->
-
-                <div class="item">
-                    <a href="#" class="image">
-                        <img data-echo="{{ asset('images/brands/brand4.png') }}" src="{{ asset('images/blank.gif') }}"
-                            alt="">
-                    </a>
-                </div>
-                <!--/.item-->
-
-                <div class="item">
-                    <a href="#" class="image">
-                        <img data-echo="{{ asset('images/brands/brand1.png') }}" src="{{ asset('images/blank.gif') }}"
-                            alt="">
-                    </a>
-                </div>
-                <!--/.item-->
-
-                <div class="item">
-                    <a href="#" class="image">
-                        <img data-echo="{{ asset('images/brands/brand5.png') }}" src="{{ asset('images/blank.gif') }}"
-                            alt="">
-                    </a>
-                </div>
-                <!--/.item-->
-            </div><!-- /.owl-carousel #logo-slider -->
-        </div><!-- /.logo-slider-inner -->
-
-    </div><!-- /.logo-slider -->
-    <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
+        <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
     </div><!-- /.container -->
     </div><!-- /#top-banner-and-menu -->
 @endsection

@@ -207,4 +207,11 @@ class SanPhamController extends Controller
         </button>';
         })->rawColumns(['actions'])->make(true);
     }
+
+    public function chi_tiet(Request $request)
+    {
+
+        $san_pham = SanPham::with('nhaCungCap', 'danhMuc')->find($request->id);
+        return view('pages.sanpham.index', compact('san_pham'));
+    }
 }

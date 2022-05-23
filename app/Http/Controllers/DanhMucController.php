@@ -154,4 +154,12 @@ class DanhMucController extends Controller
         </button>';
         })->rawColumns(['actions'])->make(true);
     }
+
+    public function chi_tiet(Request $request)
+    {
+        $id = $request->id;
+        $danh_muc = DanhMuc::with('sanPham')->find($id);
+
+        return view('pages.danhmuc.index', compact('danh_muc'));
+    }
 }

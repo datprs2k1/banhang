@@ -17,7 +17,7 @@ class CreateNhaCungCapTable extends Migration
             $table->id();
             $table->string('logo');
             $table->string('ten_nha_cung_cap');
-            $table->string('gioi_thieu');
+            $table->text('gioi_thieu');
             $table->string('dia_chi');
             $table->string('phone');
             $table->string('email');

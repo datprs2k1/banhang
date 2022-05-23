@@ -19,9 +19,3 @@ use GuzzleHttp\Middleware;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::post('/register', [AuthController::class, 'register']);
-
-Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/logout', [AuthController::class, 'logout']);
-});

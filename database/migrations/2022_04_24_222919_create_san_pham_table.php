@@ -17,9 +17,9 @@ class CreateSanPhamTable extends Migration
             $table->id();
             $table->string('ten_san_pham');
             $table->string('hinh_anh');
-            $table->string('mo_ta');
+            $table->text('mo_ta');
             $table->integer('gia_ban');
-            $table->string('huong_dan_su_dung');
+            $table->text('huong_dan_su_dung');
             $table->string('don_vi_tinh');
             $table->integer('so_luong');
             $table->foreignId('id_danh_muc')->references('id')->on('danh_muc')->cascadeOnDelete()->cascadeOnUpdate();

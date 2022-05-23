@@ -241,7 +241,7 @@
                         "targets": 1,
                         "data": "description",
                         "render": function(data, type, row, meta) {
-                            return '<img src="/images/nhacungcap' + data +
+                            return '<img src="/images/nhacungcap/' + data +
                                 '" width="100px" height="100px">';
                         },
                     },
@@ -274,7 +274,7 @@
                         $('input[name="_phone"]').val(data.phone);
                         $('input[name="_email"]').val(data.email);
                         $('input[name="_website"]').val(data.website);
-                        $('#_img-logo').attr('src', '/images/nhacungcap' + data.logo);
+                        $('#_img-logo').attr('src', '/images/nhacungcap/' + data.logo);
                         $('#modal-sua').modal('show');
                     }
                 });
