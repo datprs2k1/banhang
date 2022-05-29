@@ -239,7 +239,6 @@
     <script>
         $(document).ready(function() {
             bsCustomFileInput.init();
-
             $('#danhsach').DataTable({
                 processing: true,
                 serverSide: true,
@@ -309,10 +308,8 @@
                 "responsive": true,
                 "pageLength": 10
             });
-
             $(document).on('click', '.sua_san_pham', function(e) {
                 let id = $(this).data('id');
-
                 $.ajax({
                     url: '/admin/sanpham/' + id,
                     type: 'GET',
@@ -335,25 +332,17 @@
                     }
                 });
             });
-
             var file;
-
             $('input[name="hinh_anh"]').on('change', function(e) {
                 file = e.target.files[0];
-
                 let src = window.URL.createObjectURL(file);
                 $('#img-hinh-anh').attr('src', src);
-
             });
-
             $('input[name="_hinh_anh"]').on('change', function(e) {
                 file = e.target.files[0];
-
                 let src = window.URL.createObjectURL(file);
                 $('#_img-hinh-anh').attr('src', src);
-
             });
-
             $.ajax({
                 url: '/admin/nhacungcap/danhsach',
                 type: 'GET',
@@ -370,7 +359,6 @@
                     });
                 }
             });
-
             $.ajax({
                 url: '/admin/danhmuc/danhsach',
                 type: 'GET',
