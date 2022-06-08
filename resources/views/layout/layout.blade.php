@@ -39,6 +39,8 @@
     <script src="{{ asset('js/echo.min.js') }}"></script>
     <script src="{{ asset('js/jquery.easing-1.3.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
     @yield('script')
 </body>

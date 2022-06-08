@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DanhMucController;
 use App\Http\Controllers\GioHangController;
+use App\Http\Controllers\HoaDonController;
 use App\Http\Controllers\NhaCungCapController;
 use App\Http\Controllers\SanPhamController;
 use Spatie\Permission\Contracts\Role;
@@ -34,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/giohang/huyen/{id}', [GioHangController::class, 'getHuyen'])->name('giohang.huyen')->where('id', '[0-9]+');
     Route::get('/giohang/xa/{id}', [GioHangController::class, 'getXa'])->name('giohang.xa')->where('id', '[0-9]+');
     Route::resource('/giohang', GioHangController::class);
+    Route::resource('/hoadon', HoaDonController::class);
 });
 
 Route::group(['prefix' => 'admin'], function () {

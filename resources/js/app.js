@@ -861,9 +861,7 @@ $(document).on('click', '#them_gio_hang', function (e) {
 const giohang = () => {
     $('#gio_hang').empty();
     $('#tong_tien').empty();
-    $('#tong_tien_a').empty();
     $('#count').empty();
-    $('#danh_sach_gio_hang').empty();
     const currency = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' });
     $.ajax({
         url: window.location.protocol + '//' + window.location.host + '/giohang/danhsach',
@@ -874,7 +872,6 @@ const giohang = () => {
             $.each(data, (key, value) => {
                 let id = value.id;
                 let ten_san_pham = value.san_pham.ten_san_pham;
-                let gia_ban = value.san_pham.gia_ban;
                 let so_luong = value.so_luong;
                 let hinh_anh = value.san_pham.hinh_anh;
                 let tong_tien = value.san_pham.gia_ban * value.so_luong;
@@ -901,32 +898,10 @@ const giohang = () => {
                 </div>
             </div><hr>`;
                 $('#gio_hang').append(html);
-                let danh_sach_gio_hang_html = `<tr data-id="`+id+`">
-                <td class="romove-item"><div title="Xoá" class="icon"><i class="fa fa-trash" data-id="` + id + `" id="xoa_gio_hang"></i></div></td>
-                <td class="cart-image">
-                    <a class="entry-thumbnail" href="">
-                        <img src="`+ window.location.protocol + '//' + window.location.host + '/images/sanpham/' + hinh_anh + `" alt="">
-                    </a>
-                </td>
-                <td class="cart-product-name-info">
-                    <h4 class='cart-product-description' data-id ="`+ id + ` id="item_gio_hang""><a href=""><b>` + ten_san_pham + `</b></a></h4>
-                </td>
-                <td class="cart-product-quantity">
-                    <div class="quant-input">
-
-                        <input type="number" name="" id="so_luong" data-id="`+ id + `" value="` + so_luong + `" min="1">
-                    </div>
-                </td>
-                <td>2</td>
-                <td class="cart-product-sub-total"><span class="cart-sub-total-price">`+ currency.format(gia_ban) + `</span></td>
-                <td class="cart-product-grand-total"><span class="cart-grand-total-price">`+ currency.format(tong_tien) + `</span></td>
-            </tr>`;
-                $('#danh_sach_gio_hang').append(danh_sach_gio_hang_html);
             });
 
-            let tonghtml = `<span class="price">Tổng tiền: ` + currency.format(tong) + `</span>`
-            $('#tong_tien').append(tonghtml);
-            $('#tong_tien_a').append(currency.format(tong));
+            $('#tong_tien').html(currency.format(tong));
+            $('#tong_tien_a').html(currency.format(tong));
 
         },
         error: (httpObj) => {
@@ -939,11 +914,14 @@ const giohang = () => {
 };
 
 $(document).on('click', '#xoa_gio_hang', function (e) {
-    let id = $(this).data('id');
+    let btn = $(this);
+    let id = btn.data('id');
     $.ajax({
         url: window.location.protocol + '//' + window.location.host + '/giohang/' + id,
         type: 'DELETE',
         complete: function () {
+            let parent = btn.parents('tr');
+            parent.remove();
             giohang();
         },
         success: function (data) {
@@ -964,12 +942,19 @@ $(document).on('click', '#xoa_gio_hang', function (e) {
 });
 
 $(document).on('change', '#so_luong', function () {
-    let id = $(this).data('id');
-    let so_luong = $(this).val();
+
+    let btn = $(this);
+
+    let id = btn.data('id');
+    let so_luong = btn.val();
 
     let formData = new FormData();
     formData.append('so_luong', so_luong);
     formData.append('_method', 'PUT');
+
+    const currency = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' });
+
+
 
     $.ajax({
         url: window.location.protocol + '//' + window.location.host +
@@ -978,12 +963,16 @@ $(document).on('change', '#so_luong', function () {
         data: formData,
         contentType: false,
         processData: false,
+        success: function (data) {
+            $('#tong_tien_'+id).html(currency.format(so_luong * data.san_pham.gia_ban));
+        },
         complete: function () {
             giohang();
         }
     });
 });
 
-window.onload = () => {
+$(document).ready(function () {
     giohang();
-};
+} );
+

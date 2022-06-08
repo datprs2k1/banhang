@@ -43,6 +43,44 @@
                                         </tr>
                                     </thead><!-- /thead -->
                                     <tbody id="danh_sach_gio_hang">
+                                        @foreach ($gio_hang as $item)
+                                            <tr data-id="{{ $item->sanPham->id }}">
+                                                <td class="remove-item">
+                                                    <div title="Xoá" class="icon"><i class="fa fa-trash"
+                                                            data-id="{{ $item->id }}" id="xoa_gio_hang"></i>
+                                                    </div>
+                                                </td>
+                                                <td class="cart-image">
+                                                    <a class="entry-thumbnail" href="">
+                                                        <img src="{{ asset('images/sanpham/' . $item->sanPham->hinh_anh) }}"
+                                                            alt="">
+                                                    </a>
+                                                </td>
+                                                <td class="cart-product-name-info">
+                                                    <h4 class='cart-product-description'
+                                                        data-id="{{ $item->sanPham->id }}"
+                                                        id="
+                                                                                                                                                                                                                                            item_gio_hang">
+                                                        <a href=""><b>{{ $item->sanPham->ten_san_pham }}</b></a>
+                                                    </h4>
+                                                </td>
+                                                <td class="cart-product-quantity">
+                                                    <div class="quant-input">
+
+                                                        <input type="number" name="" id="so_luong"
+                                                            data-id="{{ $item->id }}" value="{{ $item->so_luong }}"
+                                                            min="1">
+                                                    </div>
+                                                </td>
+                                                <td>2</td>
+                                                <td class="cart-product-sub-total"><span
+                                                        class="cart-sub-total-price">{{ number_format($item->sanPham->gia_ban, 0, ',', '.') }}</span>
+                                                </td>
+                                                <td class="cart-product-grand-total"><span class="cart-grand-total-price"
+                                                        id="tong_tien_{{ $item->id }}">{{ number_format($item->sanPham->gia_ban * $item->so_luong, 0, ',', '.') }}</span>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody><!-- /tbody -->
                                     <tfoot>
                                         <tr>
@@ -83,7 +121,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="xa-phuong:">Địa chỉ nhận mong muốn: </label>
-                                        <input type="text" class="form-control" name="diachi"
+                                        <input type="text" class="form-control" name="diachi" id="diachi"
                                             placeholder="VD: số nhà 3 ...">
                                     </div>
                                     <div class="form-group">
@@ -110,7 +148,8 @@
                                             <tr>
                                                 <td>
                                                     <div class="cart-checkout-btn pull-right">
-                                                        <button type="submit" class="btn btn-primary checkout-btn">Đặt
+                                                        <button type="submit" class="btn btn-primary checkout-btn"
+                                                            id="dat_hang">Đặt
                                                             hàng</button>
                                                     </div>
                                                 </td>
@@ -185,6 +224,46 @@
 
             getTinh();
 
+            $('#dat_hang').on('click', function() {
+                let tinh = $('#tinh').val() < 10 ? '0' + $('#tinh').val() : $('#tinh').val();
+                let huyen = $('#huyen').val() < 10 ? '00' + $('#huyen').val() : $('#huyen').val() < 100 ?
+                    '0' +
+                    $('#huyen').val() : $('#huyen').val();
+                let xa = $('#xa').val() < 10 ? '00' + $('#xa').val() : $('#xa').val() < 100 ? '0' + $('#xa')
+                    .val() : $('#xa').val();
+                let diachi = $('#diachi').val();
+                let thanhtoan = $('#thanhtoan').val();
+
+                $.ajax({
+                    url: window.location.protocol + '//' + window.location.host +
+                        '/hoadon',
+                    type: "POST",
+                    data: {
+                        id_tinh: tinh,
+                        id_huyen: huyen,
+                        id_xa: xa,
+                        dia_chi: diachi,
+                        thanh_toan: thanhtoan,
+                    },
+                    success: function(data) {
+                        swal({
+                            title: 'Đặt hàng thành công',
+                            text: 'Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất',
+                            type: 'success',
+                            confirmButtonText: 'OK'
+                        });
+                    },
+                    error: function(data) {
+                        swal({
+                            title: 'Đặt hàng thất bại',
+                            text: 'Vui lòng kiểm tra lại thông tin',
+                            type: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+
+            });
         });
     </script>
 @endsection

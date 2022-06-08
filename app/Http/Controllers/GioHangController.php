@@ -19,7 +19,7 @@ class GioHangController extends Controller
     public function index()
     {
         //
-        $gio_hang = GioHang::where('id_user', Auth::user()->id)->get();
+        $gio_hang = GioHang::with('sanPham')->where('id_user', Auth::user()->id)->get();
 
         return view('pages.giohang.index', compact('gio_hang'));
     }
@@ -104,11 +104,11 @@ class GioHangController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $gio_hang = GioHang::where('id', $id)->where('id_user', Auth::user()->id)->first();
+        $gio_hang = GioHang::with('sanPham')->where('id', $id)->where('id_user', Auth::user()->id)->first();
         $gio_hang->so_luong = $request->so_luong;
         $gio_hang->save();
 
-        return response()->json(['success' => 'Cập nhật giỏ hàng thành công'], 200);
+        return response()->json($gio_hang, 200);
     }
 
     /**
