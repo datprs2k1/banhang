@@ -56,15 +56,15 @@
                             style="width: 3760px; left: 0px; transform: translate3d(0px, 0px, 0px); transform-origin: 470px center; perspective-origin: 470px center; transition: all 0ms ease 0s;">
                             <div class="swiper-slide"
                                 style="background-image: url(https://ckthemes.com/flipmart/v2/wp-content/uploads/sites/2/2017/04/01-3.jpg);">
-                                <h2>Random Text 1</h2>
+                                <h1>Random Text 1</h1>
                             </div>
                             <div class="swiper-slide"
                                 style="background-image: url(https://ckthemes.com/flipmart/v2/wp-content/uploads/sites/2/2017/04/01-3.jpg);">
-                                <h2>Random Text 1</h2>
+                                <h1>Random Text 2</h1>
                             </div>
                             <div class="swiper-slide"
                                 style="background-image: url(https://ckthemes.com/flipmart/v2/wp-content/uploads/sites/2/2017/04/01-3.jpg);">
-                                <h2>Random Text 1</h2>
+                                <h1>Random Text 3</h1>
                             </div>
                         </div>
                         <div class="swiper-button-next"></div>
