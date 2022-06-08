@@ -17,6 +17,24 @@
         rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <style>
+        .swiper-container {
+            width: 80vw;
+        }
+
+        .swiper-slide {
+            background-size: cover;
+            background-position: 50%;
+            min-height: 60vh;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+    </style>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -40,6 +58,8 @@
     <script src="{{ asset('js/jquery.easing-1.3.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
 
 
     @yield('script')

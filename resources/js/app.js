@@ -1,6 +1,8 @@
 require('./bootstrap');
 import $ from 'jquery';
 import Swal from 'sweetalert2'
+
+
 window.$ = window.jQuery = $;
 
 $(function () {
@@ -973,6 +975,7 @@ $(document).on('change', '#so_luong', function () {
 });
 
 $(document).ready(function () {
+
     giohang();
 } );
 

@@ -51,6 +51,26 @@
                             </div><!-- /.row -->
                         </div><!-- /.info-boxes-inner -->
                     </div><!-- /.info-boxes -->
+                    <div class="swiper mySwiper scroll-tabs outer-top-vs wow fadeInUp">
+                        <div class="swiper-wrapper"
+                            style="width: 3760px; left: 0px; transform: translate3d(0px, 0px, 0px); transform-origin: 470px center; perspective-origin: 470px center; transition: all 0ms ease 0s;">
+                            <div class="swiper-slide"
+                                style="background-image: url(https://ckthemes.com/flipmart/v2/wp-content/uploads/sites/2/2017/04/01-3.jpg);">
+                                <h2>Random Text 1</h2>
+                            </div>
+                            <div class="swiper-slide"
+                                style="background-image: url(https://ckthemes.com/flipmart/v2/wp-content/uploads/sites/2/2017/04/01-3.jpg);">
+                                <h2>Random Text 1</h2>
+                            </div>
+                            <div class="swiper-slide"
+                                style="background-image: url(https://ckthemes.com/flipmart/v2/wp-content/uploads/sites/2/2017/04/01-3.jpg);">
+                                <h2>Random Text 1</h2>
+                            </div>
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
                     <!-- ============================================== INFO BOXES : END ============================================== -->
                     <!-- ============================================== SCROLL TABS ============================================== -->
                     @foreach ($danh_muc as $item)
@@ -148,4 +168,27 @@
         <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
     </div><!-- /.container -->
     </div><!-- /#top-banner-and-menu -->
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            const swiper = new Swiper(".mySwiper", {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                loop: true,
+                autoplay: {
+                    delay: 5000
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev"
+                }
+            });
+        })
+    </script>
 @endsection

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\GioHang;
 use App\Models\HoaDon;
+use App\Models\GioHang;
 use App\Models\ChiTietHoaDon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -95,22 +95,26 @@ class HoaDonController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\HoaDon  $hoaDon
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(HoaDon $hoaDon)
+    public function show($id)
     {
         //
-        return view('pages.hoadon.chitiet');
+        $chi_tiet = ChiTietHoaDon::with('hoadon', 'sanPham', 'tinh', 'huyen', 'xa', 'user')->where('id_hoa_don', $id)->get();
+        if (count($chi_tiet) == 0) {
+            abort(404);
+        }
+        return view('pages.hoadon.chitiet', compact('chi_tiet'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\HoaDon  $hoaDon
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(HoaDon $hoaDon)
+    public function edit($id)
     {
         //
     }
@@ -119,10 +123,10 @@ class HoaDonController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\HoaDon  $hoaDon
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, HoaDon $hoaDon)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -130,10 +134,10 @@ class HoaDonController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\HoaDon  $hoaDon
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(HoaDon $hoaDon)
+    public function destroy($id)
     {
         //
     }

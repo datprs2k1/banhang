@@ -21,19 +21,23 @@
             <div class="col-md-8 addres-container">
                 <div class="address">
                     <h3>Địa chỉ nhận hàng</h3>
-                    <p class="nguoinhan"><strong>Người nhận: </strong></p>
+                    <p class="nguoinhan"><strong>Người nhận: {{ $chi_tiet[0]->user->name }}</strong></p>
                     <p>Số điện thoại: </p>
-                    <p>Email: </p>
+                    <p>Email: {{ $chi_tiet[0]->user->email }}</p>
                     <p>Địa chỉ nhận hàng tại: </p>
-                    <p>,
-                        ,
+                    <p>{{ $chi_tiet[0]->tinh->type }} {{ $chi_tiet[0]->tinh->ten }},
+                        {{ $chi_tiet[0]->huyen->type }} {{ $chi_tiet[0]->huyen->ten }},
+                        {{ $chi_tiet[0]->xa->type }} {{ $chi_tiet[0]->xa->ten }}
+                    </p>
+                    <p>
+                        {{ $chi_tiet[0]->hoadon->dia_chi }}
                     </p>
                 </div>
             </div>
             <div class="col-md-4 addres-container tinhtrang">
                 <h3>Tình trạng đơn hàng</h3>
-                <p>Mã hoá đơn: </p>
-                <p><strong>Đơn hàng chưa được xác nhận</strong></p>
+                <p>Mã hoá đơn: {{ $chi_tiet[0]->hoadon->id }}</p>
+                <p><strong>{{ $chi_tiet[0]->hoadon->trang_thai }}</strong></p>
             </div>
         </div>
     </div>
@@ -56,28 +60,37 @@
                                     </tr>
                                 </thead><!-- /thead -->
                                 <tbody>
-
-                                    <tr>
-                                        <td class="romove-item"></td>
-                                        <td class="cart-image">
-                                            <a class="entry-thumbnail" href="">
-                                                <img src="" alt="">
-                                            </a>
-                                        </td>
-                                        <td class="cart-product-name-info">
-                                            <h4 class='cart-product-description'><a href=""><b></b></a>
-                                            </h4>
-                                        </td>
-                                        <td class="cart-product-quantity">
-                                            <div class="quant-input">
-                                                <h4></h4>
-                                            </div>
-                                        </td>
-                                        <td class="cart-product-sub-total"><span class="cart-sub-total-price">0
-                                                VNĐ</span></td>
-                                        <td class="cart-product-grand-total"><span class="cart-grand-total-price">0
-                                                VNĐ</span></td>
-                                    </tr>
+                                    @php
+                                        $stt = 1;
+                                    @endphp
+                                    @foreach ($chi_tiet as $item)
+                                        <tr>
+                                            <td class="romove-item">{{ $stt++ }}</td>
+                                            <td class="cart-image">
+                                                <a class="entry-thumbnail"
+                                                    href="/sanpham/{{ Str::slug($item->sanPham->ten_san_pham) . '_' . $item->sanPham->id }}">
+                                                    <img src="{{ asset('/images/sanpham/' . $item->sanPham->hinh_anh) }}"
+                                                        alt="">
+                                                </a>
+                                            </td>
+                                            <td class="cart-product-name-info">
+                                                <h4 class='cart-product-description'><a
+                                                        href=""><b>{{ $item->sanPham->ten_san_pham }}</b></a>
+                                                </h4>
+                                            </td>
+                                            <td class="cart-product-quantity">
+                                                <div class="quant-input">
+                                                    <h4>{{ $item->so_luong }}</h4>
+                                                </div>
+                                            </td>
+                                            <td class="cart-product-sub-total"><span
+                                                    class="cart-sub-total-price">{{ number_format($item->sanPham->gia_ban) }}
+                                                    VNĐ</span></td>
+                                            <td class="cart-product-grand-total"><span
+                                                    class="cart-grand-total-price">{{ number_format($item->sanPham->gia_ban * $item->so_luong) }}
+                                                    VNĐ</span></td>
+                                        </tr>
+                                    @endforeach
                                 </tbody><!-- /tbody -->
                             </table><!-- /table -->
                         </div>
@@ -88,7 +101,7 @@
                                 <tr>
                                     <th>
                                         <div class="cart-grand-total">
-                                            Tổng<span class="inner-left-md">0
+                                            Tổng<span class="inner-left-md">{{ $chi_tiet[0]->hoadon->tong_tien }}
                                                 VNĐ</span>
                                         </div>
                                     </th>

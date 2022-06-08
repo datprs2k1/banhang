@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\HoaDon;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -48,7 +49,8 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        return view('admin.pages.dashboard.index');
+        $hoa_don = HoaDon::where('id_user', Auth::user()->id)->where('trang_thai', 'Đang chờ xử lý')->get();
+        return view('admin.pages.dashboard.index', compact('hoa_don'));
     }
 
     public function login()
