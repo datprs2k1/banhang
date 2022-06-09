@@ -91,22 +91,36 @@
                                 </thead>
                                 <tbody>
 
-                                    <tr>
-                                        <td></td>
-                                        <td><a href=""></a>
-                                        </td>
-                                        <td>0 VNĐ</td>
-                                        <td></td>
-                                        <td>
+                                    @php
+                                        $stt = 1;
+                                    @endphp
 
-                                        </td>
-                                        <td></td>
-                                        <td>
+                                    @foreach ($hoa_don as $item)
+                                        @if ($item->trang_thai == 'Đang chờ xử lý')
+                                            <tr id="hoadon-{{ $item->id }}">
+                                                <td>{{ $stt++ }}</td>
+                                                <td><a href="/hoadon/{{ $item->id }}">{{ $item->id }}</a>
+                                                </td>
+                                                <td>{{ $item->tong_tien }} VNĐ</td>
+                                                <td>
+                                                    {{ $item->thanh_toan }}
+                                                </td>
+                                                <td>
+                                                    {{ $item->trang_thai }}
+                                                </td>
+                                                <td>
+                                                    {{ $item->created_at }}
+                                                </td>
+                                                <td>
 
-                                            <button class="btn btn-primary" value="">Duyệt</button>
-                                            <button class="btn btn-danger" value="">Huỷ</button>
-                                        </td>
-                                    </tr>
+                                                    <button class="btn btn-primary" id="btn-duyet"
+                                                        data-id="{{ $item->id }}" value="">Duyệt</button>
+                                                    <button class="btn btn-danger" id="btn-huy"
+                                                        data-id="{{ $item->id }}">Huỷ</button>
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
 
                                 </tbody>
                             </table>
@@ -118,8 +132,7 @@
                     </div>
                 </div>
             </div>
-    </div>
-    </section>
+        </section>
 
     </div>
 @endsection

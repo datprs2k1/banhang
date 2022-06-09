@@ -551,7 +551,8 @@ $('#them_san_pham').on('click', function (e) {
                 button: "OK!",
             }).then((result) => {
                 if (result.value) {
-                    window.location.href = '/admin/sanpham';
+                    let table = $('#danhsach').DataTable();
+                    table.ajax.reload();
                 }
             });
         }, error: function (error) {
@@ -637,7 +638,8 @@ $('#sua_san_pham').on('click', function (e) {
                 button: "OK!",
             }).then((result) => {
                 if (result.value) {
-                    window.location.href = '/admin/sanpham';
+                    let table = $('#danhsach').DataTable();
+                    table.ajax.reload();
                 }
             });
         }, error: function (error) {
@@ -691,9 +693,8 @@ $(document).on('click', '.xoa_san_pham', function (e) {
                         icon: "success",
                         button: "OK!",
                     }).then((result) => {
-                        if (result.value) {
-                            window.location.href = '/admin/sanpham';
-                        }
+                        let table = $('#danhsach').DataTable();
+                        table.ajax.reload();
                     });
                 }, error: function (error) {
                     Swal.fire({
@@ -970,6 +971,58 @@ $(document).on('change', '#so_luong', function () {
         },
         complete: function () {
             giohang();
+        }
+    });
+});
+
+$(document).on('click', '#btn-duyet', function () {
+    let id = $(this).data('id');
+    let trang_thai = "Đang xác nhận";
+    $.ajax({
+        url: window.location.protocol + '//' + window.location.host + '/hoadon/' + id,
+        type: 'PUT',
+        data: {
+            trang_thai: trang_thai
+        },
+        success: function (data) {
+            Swal.fire({
+                title: "Thành công!",
+                text: "Đã duyệt đơn hàng!",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1000,
+            })
+            .then(() => {
+                $('#hoadon-' + id).remove();
+                let table = $('#danhsach').DataTable();
+                table.ajax.reload();
+            });
+        }
+    });
+});
+
+$(document).on('click', '#btn-huy', function () {
+    let id = $(this).data('id');
+    let trang_thai = "Đã huỷ";
+    $.ajax({
+        url: window.location.protocol + '//' + window.location.host + '/hoadon/' + id,
+        type: 'PUT',
+        data: {
+            trang_thai: trang_thai
+        },
+        success: function (data) {
+            Swal.fire({
+                title: "Thành công!",
+                text: "Huỷ đơn hàng thành công!",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1000,
+            })
+            .then(() => {
+                $('#hoadon-' + id).remove();
+                let table = $('#danhsach').DataTable();
+                table.ajax.reload();
+            });
         }
     });
 });

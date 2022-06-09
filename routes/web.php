@@ -49,5 +49,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::resource('/nhacungcap', NhaCungCapController::class);
         Route::get('/sanpham/danhsach', [SanPhamController::class, 'danhsach'])->name('sanpham.danhsach');
         Route::resource('/sanpham', SanPhamController::class);
+        Route::get('/hoadon/danhsach', [AdminController::class, 'danhsachhoadon'])->name('hoadon.danhsach');
+        Route::get('/hoadon', [AdminController::class, 'hoadon'])->name('admin.hoadon');
     });
 });

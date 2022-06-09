@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\HoaDon;
 use Illuminate\Support\Facades\Auth;
+use Yajra\Datatables\Datatables;
+
 
 class AdminController extends Controller
 {
@@ -66,5 +68,19 @@ class AdminController extends Controller
         return response()->json([
             'message' => 'Đăng xuất thành công.',
         ], 200);
+    }
+
+    public function hoadon()
+    {
+        return view('admin.pages.hoadon.index');
+    }
+
+    public function danhsachhoadon()
+    {
+        $hoa_don = HoaDon::get();
+
+        return Datatables::of($hoa_don)->addIndexColumn()->addColumn('mahoadon', function ($object) {
+            return $object->id;
+        })->rawColumns(['mahoadon'])->make(true);
     }
 }

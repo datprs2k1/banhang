@@ -36,5 +36,17 @@ return [
                 'icon' => 'fa fa-list',
             ],
         ],
+    ],
+    [
+        'name' => 'Quản lý hoá đơn',
+        'icon' => 'fa fa-list',
+        'route' => 'admin.pages.hoadon.index',
+        'children' => [
+            [
+                'name' => 'Danh sách',
+                'route' => 'admin.hoadon',
+                'icon' => 'fa fa-list',
+            ],
+        ],
     ]
 ];

@@ -53,3 +53,8 @@ Breadcrumbs::for('sanpham.edit', function ($trail, $id) {
     $trail->parent('sanpham.index');
     $trail->push('Sửa', route('sanpham.edit', $id));
 });
+
+Breadcrumbs::for('admin.hoadon', function ($trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Hóa đơn', route('admin.hoadon'));
+});

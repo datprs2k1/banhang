@@ -129,6 +129,11 @@ class HoaDonController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $hoa_don = HoaDon::find($id);
+        $hoa_don->trang_thai = $request->trang_thai;
+        $hoa_don->save();
+
+        return response()->json(['success' => 'Cập nhật thành công'], 200);
     }
 
     /**
