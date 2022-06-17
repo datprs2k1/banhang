@@ -19,6 +19,8 @@ class CreateHoaDonTable extends Migration
             $table->unsignedBigInteger('id_tinh');
             $table->unsignedBigInteger('id_huyen');
             $table->unsignedBigInteger('id_xa');
+            $table->string('ten_nguoi_nhan', 50);
+            $table->string('so_dien_thoai');
             $table->string('dia_chi');
             $table->string('thanh_toan');
             $table->double('tong_tien');

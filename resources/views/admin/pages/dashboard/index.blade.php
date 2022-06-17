@@ -26,7 +26,8 @@
                             <div class="icon">
                                 <i class="ion ion-bag"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="#" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 
@@ -40,7 +41,8 @@
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="#" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 
@@ -54,7 +56,8 @@
                             <div class="icon">
                                 <i class="ion ion-person-add"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="#" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 
@@ -68,73 +71,264 @@
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="#" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
-                        @if (count($hoa_don) > 0)
-                            <h3>Đơn hàng chờ xét duyệt</h3>
-                            <table class="table table-hover text-nowrap">
-                                <thead>
-                                    <tr>
-                                        <th>STT</th>
-                                        <th>Mã hoá đơn</th>
-                                        <th>Tổng tiền</th>
-                                        <th>Phương thức thanh toán</th>
-                                        <th>Trạng thái</th>
-                                        <th>Ngày tạo</th>
-                                        <th>Hành động</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                    <section class="col-lg-12 connectedSortable">
 
-                                    @php
-                                        $stt = 1;
-                                    @endphp
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="fas fa-chart-pie mr-1"></i>
+                                    Doanh thu 30 ngày gần đây
+                                </h3>
+                                <div class="card-tools">
+                                    <ul class="nav nav-pills ml-auto">
+                                        <li class="nav-item">
 
-                                    @foreach ($hoa_don as $item)
-                                        @if ($item->trang_thai == 'Đang chờ xử lý')
-                                            <tr id="hoadon-{{ $item->id }}">
-                                                <td>{{ $stt++ }}</td>
-                                                <td><a href="/hoadon/{{ $item->id }}">{{ $item->id }}</a>
-                                                </td>
-                                                <td>{{ $item->tong_tien }} VNĐ</td>
-                                                <td>
-                                                    {{ $item->thanh_toan }}
-                                                </td>
-                                                <td>
-                                                    {{ $item->trang_thai }}
-                                                </td>
-                                                <td>
-                                                    {{ $item->created_at }}
-                                                </td>
-                                                <td>
-
-                                                    <button class="btn btn-primary" id="btn-duyet"
-                                                        data-id="{{ $item->id }}" value="">Duyệt</button>
-                                                    <button class="btn btn-danger" id="btn-huy"
-                                                        data-id="{{ $item->id }}">Huỷ</button>
-                                                </td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
-
-                                </tbody>
-                            </table>
-                        @else
-                            <div class="alert alert-success my-4" role="alert">
-                                <span>Không có đơn hàng chờ duyệt!!!</span>
+                                            <button type="button" class="btn btn-primary btn-sm"
+                                                data-card-widget="collapse" title="Collapse">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        @endif
-                    </div>
+                            <div class="card-body" id="doanhthu30ngay">
+                                <div class="tab-content p-0">
+                                    <div class="chart tab-pane active" id="revenue-chart" style="height: 500px;">
+                                        <canvas id="doanh-thu-30-ngay" height="500" style="height: 500px;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <section class="col-lg-7 connectedSortable">
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="fas fa-chart-pie mr-1"></i>
+                                    Doanh thu 12 tháng gần đây
+                                </h3>
+                                <div class="card-tools">
+                                    <ul class="nav nav-pills ml-auto">
+                                        <li class="nav-item">
+
+                                            <button type="button" class="btn btn-primary btn-sm"
+                                                data-card-widget="collapse" title="Collapse">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body" id="doanhthu12thang">
+                                <div class="tab-content p-0">
+                                    <div class="chart tab-pane active" id="revenue-chart" style="height: 500px;">
+                                        <canvas id="doanh-thu-12-thang" height="500" style="height: 500px;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="col-lg-5 connectedSortable">
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="fas fa-chart-pie mr-1"></i>
+                                    Số lượng sản phẩm đã bán
+                                </h3>
+                                <div class="card-tools">
+                                    <ul class="nav nav-pills ml-auto">
+                                        <li class="nav-item">
+
+                                            <button type="button" class="btn btn-primary btn-sm"
+                                                data-card-widget="collapse" title="Collapse">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body" id="sanpham">
+                                <div class="tab-content p-0">
+                                    <div class="chart tab-pane active" id="revenue-chart" style="height: 500px;">
+                                        <canvas id="san-pham" height="500" style="height: 500px;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </section>
 
     </div>
+@endsection
+
+@section('script')
+    <script src="{{ asset('js/Chart.js') }}"></script>
+    <script src="{{ asset('js/utils.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $.ajax({
+                url: '{{ route('thongke.30ngay') }}',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    const labels = Object.keys(response);
+                    const values = Object.values(response);
+
+                    const data = {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Doanh thu',
+                            backgroundColor: 'rgb(54, 162, 235)',
+                            borderColor: 'rgb(54, 162, 235)',
+                            data: values,
+
+                        }]
+                    };
+
+                    const config = {
+                        type: 'line',
+                        data: data,
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'top',
+                                },
+                                title: {
+                                    display: false,
+                                    text: 'Chart.js Line Chart'
+                                }
+                            },
+                            maintainAspectRatio: false,
+
+                        },
+                    };
+
+                    const myChart = new Chart(
+                        $('#doanh-thu-30-ngay'),
+                        config,
+                    );
+                }
+            });
+
+
+            $.ajax({
+                url: '{{ route('thongke.12thang') }}',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    const labels = Object.keys(response);
+                    const values = Object.values(response);
+
+                    const data = {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Doanh thu',
+                            backgroundColor: 'rgb(54, 162, 235)',
+                            borderColor: 'rgb(54, 162, 235)',
+                            data: values
+                        }]
+                    };
+
+                    const config = {
+                        type: 'bar',
+                        data: data,
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'top',
+                                },
+                                title: {
+                                    display: false,
+                                    text: 'Chart.js Line Chart'
+                                }
+                            },
+                            maintainAspectRatio: false,
+                        },
+                    };
+
+                    const myChart = new Chart(
+                        $('#doanh-thu-12-thang'),
+                        config,
+                    );
+
+                }
+            });
+
+
+            $.ajax({
+                url: '{{ route('thongke.sanpham') }}',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+
+                    const labels = Object.keys(response);
+                    const values = Object.values(response);
+
+                    const color = {
+                        'red': 'rgb(255, 99, 132)',
+                        'orange': 'rgb(255, 159, 64)',
+                        'yellow': 'rgb(255, 205, 86)',
+                        'green': 'rgb(75, 192, 192)',
+                        'blue': 'rgb(54, 162, 235)',
+                        'purple': 'rgb(153, 102, 255)',
+                        'grey': 'rgb(201, 203, 207)',
+                    };
+
+                    const data = {
+                        labels: labels,
+                        datasets: [{
+                            backgroundColor: Object.values(color),
+                            borderColor: Object.values(color),
+                            data: values
+                        }]
+                    };
+
+                    const config = {
+                        type: 'doughnut',
+                        data: data,
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'top',
+                                },
+                                title: {
+                                    display: false,
+                                    text: 'Chart.js Line Chart'
+                                }
+                            },
+                            maintainAspectRatio: false,
+                        },
+                    };
+
+                    const myChart = new Chart(
+                        $('#san-pham'),
+                        config,
+                    );
+
+                }
+            });
+
+
+        });
+    </script>
 @endsection
 
 @section('footer')

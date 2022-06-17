@@ -96,66 +96,82 @@
                                         </tr>
                                     </tfoot>
                                 </table><!-- /table -->
-                                <div class="col-md-8 address-form">
-                                    <h5>Vui lòng chọn địa chỉ giao hàng.</h5>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label for="tinh">Tỉnh</label>
-                                            <select id="tinh" class="form-control" name="tinh">
-                                                <option selected>Chọn tỉnh.</option>
-
-                                            </select>
+                                <div class="row">
+                                    <div class="col-md-8 address-form" style="height: 300px">
+                                        <h5>Vui lòng chọn địa chỉ giao hàng.</h5>
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <div class="form-group">
+                                                    <label for="ten_nguoi_nhan">Tên người nhận: </label>
+                                                    <input type="text" class="form-control" name="ten_nguoi_nhan"
+                                                        id="ten_nguoi_nhan" placeholder="Nguyen Văn A">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label for="so_dien_thoai">Số điện thoại: </label>
+                                                    <input type="number" class="form-control" name="so_dien_thoai"
+                                                        id="so_dien_thoai" maxlength="10">
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <label for="huyen">Huyện</label>
-                                            <select id="huyen" class="form-control" name="huyen">
-                                                <option selected>Chọn huyện.</option>
-                                            </select>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label for="tinh">Tỉnh</label>
+                                                <select id="tinh" class="form-control" name="tinh">
+                                                    <option selected>Chọn tỉnh.</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="huyen">Huyện</label>
+                                                <select id="huyen" class="form-control" name="huyen">
+                                                    <option selected>Chọn huyện.</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="xa">Xã</label>
+                                                <select id="xa" class="form-control" name="xa">
+                                                    <option selected>Chọn xã.</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <label for="xa">Xã</label>
-                                            <select id="xa" class="form-control" name="xa">
-                                                <option selected>Chọn xã.</option>
+                                        <div class="form-group">
+                                            <label for="xa-phuong:">Địa chỉ nhận mong muốn: </label>
+                                            <input type="text" class="form-control" name="diachi" id="diachi"
+                                                placeholder="VD: số nhà 3 ...">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="thanhtoan">Phương thức thanh toán</label>
+                                            <select id="thanhtoan" class="form-control" name="thanhtoan">
+                                                <option value="Chuyển khoản">Chuyển khoản</option>
+                                                <option value="Tiền mặt">Tiền mặt</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="xa-phuong:">Địa chỉ nhận mong muốn: </label>
-                                        <input type="text" class="form-control" name="diachi" id="diachi"
-                                            placeholder="VD: số nhà 3 ...">
+                                    <div class="col-md-4 col-sm-12 cart-shopping-total" style="height: 300px">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <div class="cart-grand-total">
+                                                            Tổng<span class="inner-left-md" id="tong_tien_a"></span>
+                                                        </div>
+                                                    </th>
+                                                </tr>
+                                            </thead><!-- /thead -->
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="cart-checkout-btn pull-right">
+                                                            <button type="submit" class="btn btn-primary checkout-btn"
+                                                                id="dat_hang">Đặt
+                                                                hàng</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody><!-- /tbody -->
+                                        </table><!-- /table -->
                                     </div>
-                                    <div class="form-group">
-                                        <label for="thanhtoan">Phương thức thanh toán</label>
-                                        <select id="thanhtoan" class="form-control" name="thanhtoan">
-                                            <option value="Chuyển khoản">Chuyển khoản</option>
-                                            <option value="Tiền mặt">Tiền mặt</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-12 cart-shopping-total">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>
-                                                    <div class="cart-grand-total">
-                                                        Tổng<span class="inner-left-md" id="tong_tien_a"></span>
-                                                    </div>
-                                                </th>
-                                            </tr>
-                                        </thead><!-- /thead -->
-                                        <tbody>
-
-                                            <tr>
-                                                <td>
-                                                    <div class="cart-checkout-btn pull-right">
-                                                        <button type="submit" class="btn btn-primary checkout-btn"
-                                                            id="dat_hang">Đặt
-                                                            hàng</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody><!-- /tbody -->
-                                    </table><!-- /table -->
                             @endif
                         </div>
                     </div><!-- /.shopping-cart-table -->
@@ -233,6 +249,8 @@
                     .val() : $('#xa').val();
                 let diachi = $('#diachi').val();
                 let thanhtoan = $('#thanhtoan').val();
+                let ten_nguoi_nhan = $('#ten_nguoi_nhan').val();
+                let so_dien_thoai = $('#so_dien_thoai').val();
 
                 $.ajax({
                     url: window.location.protocol + '//' + window.location.host +
@@ -244,6 +262,8 @@
                         id_xa: xa,
                         dia_chi: diachi,
                         thanh_toan: thanhtoan,
+                        ten_nguoi_nhan: ten_nguoi_nhan,
+                        so_dien_thoai: so_dien_thoai,
                     },
                     success: function(data) {
                         swal({

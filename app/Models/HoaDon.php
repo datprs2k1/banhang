@@ -18,6 +18,8 @@ class HoaDon extends Model
         'thanh_toan',
         'tong_tien',
         'trang_thai',
+        'ten_nguoi_nhan',
+        'so_dien_thoai',
     ];
 
     protected $casts = [

@@ -9,6 +9,7 @@ use App\Http\Controllers\GioHangController;
 use App\Http\Controllers\HoaDonController;
 use App\Http\Controllers\NhaCungCapController;
 use App\Http\Controllers\SanPhamController;
+use App\Http\Controllers\ThongKeController;
 use Spatie\Permission\Contracts\Role;
 
 /*
@@ -51,5 +52,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::resource('/sanpham', SanPhamController::class);
         Route::get('/hoadon/danhsach', [AdminController::class, 'danhsachhoadon'])->name('hoadon.danhsach');
         Route::get('/hoadon', [AdminController::class, 'hoadon'])->name('admin.hoadon');
+        Route::get('/thongke/30ngay', [ThongKeController::class, 'doanhthutrong30ngay'])->name('thongke.30ngay');
+        Route::get('/thongke/12thang', [ThongKeController::class, 'doanhthutrong12thang'])->name('thongke.12thang');
+        Route::get('/thongke/sanpham', [ThongKeController::class, 'sanpham'])->name('thongke.sanpham');
     });
 });

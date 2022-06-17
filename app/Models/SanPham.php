@@ -36,4 +36,9 @@ class SanPham extends Model
     {
         return $this->belongsTo('App\Models\NhaCungCap', 'id_nha_cung_cap', 'id');
     }
+
+    public function hoaDon()
+    {
+        return $this->belongsToMany(HoaDon::class, 'chi_tiet_hoa_don', 'id_san_pham', 'id_hoa_don');
+    }
 }

@@ -48,6 +48,8 @@ class HoaDonController extends Controller
                 'id_xa' => 'required|numeric',
                 'dia_chi' => 'required|string',
                 'thanh_toan' => 'required',
+                'ten_nguoi_nhan' => 'required|string',
+                'so_dien_thoai' => 'required|string|regex:/(0)[0-9]{9}/',
             ],
             [
                 'id_tinh.required' => 'Vui lòng chọn huyện',
@@ -59,6 +61,11 @@ class HoaDonController extends Controller
                 'dia_chi.required' => 'Vui lòng nhập địa chỉ',
                 'dia_chi.string' => 'Vui lòng nhập địa chỉ',
                 'thanh_toan.required' => 'Vui lòng chọn phương thức thanh toán',
+                'ten_nguoi_nhan.required' => 'Vui lòng nhập tên người nhận',
+                'ten_nguoi_nhan.string' => 'Vui lòng nhập tên người nhận',
+                'so_dien_thoai.required' => 'Vui lòng nhập số điện thoại',
+                'so_dien_thoai.regex' => 'Số điện thoại tối đa 10 số',
+
             ],
         );
 
@@ -77,6 +84,8 @@ class HoaDonController extends Controller
         $hoa_don->thanh_toan = $request->thanh_toan;
         $hoa_don->tong_tien = $tong_tien;
         $hoa_don->trang_thai = 'Đang chờ xử lý';
+        $hoa_don->ten_nguoi_nhan = $request->ten_nguoi_nhan;
+        $hoa_don->so_dien_thoai = $request->so_dien_thoai;
         $hoa_don->save();
 
         foreach ($gio_hang as $item) {

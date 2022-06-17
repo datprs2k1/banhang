@@ -977,7 +977,7 @@ $(document).on('change', '#so_luong', function () {
 
 $(document).on('click', '#btn-duyet', function () {
     let id = $(this).data('id');
-    let trang_thai = "Đang xác nhận";
+    let trang_thai = "Đã xác nhận";
     $.ajax({
         url: window.location.protocol + '//' + window.location.host + '/hoadon/' + id,
         type: 'PUT',

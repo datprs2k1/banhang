@@ -13,15 +13,18 @@
                             <ul class="list-unstyled">
                                 @if (Auth::check())
                                     <li><a href="#"><i class="icon fa fa-user"></i>Tài khoản</a></li>
-                                    <li><a href="#"><i class="icon fa fa-shopping-cart"></i>Giỏ
+                                    <li><a href="{{ route('giohang.index') }}"><i
+                                                class="icon fa fa-shopping-cart"></i>Giỏ
                                             hàng</a></li>
-                                    <li><a href=""><i class=" icon fa fa-list-alt"></i>Hoá đơn</a></li>
+                                    <li><a href="{{ route('hoadon.index') }}"><i class=" icon fa fa-list-alt"></i>Hoá
+                                            đơn</a></li>
                                     <li>
                                     @else
-                                    <li><a href="#"><i class="icon fa fa-shopping-cart"></i>Giỏ hàng</a>
+                                    <li><a href="{{ route('giohang.index') }}"><i
+                                                class="icon fa fa-shopping-cart"></i>Giỏ hàng</a>
                                     </li>
                                     <li><a href="#"><i class="icon fa fa-check"></i>Thanh toán</a></li>
-                                    <li><a href="#"><i class="icon fa fa-lock"></i>Đăng nhập</a></li>
+                                    <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Đăng nhập</a></li>
                                 @endif
                             </ul>
                         </div><!-- /.cnt-account -->
@@ -40,7 +43,8 @@
                             <div class="logo">
                                 <a href="{{ route('home') }}">
 
-                                    <img src="{{ asset('images/shop-icon-png-6.jpg') }}" alt="" width="70%">
+                                    <img src="{{ asset('images/shop-icon-png-6.jpg') }}" alt=""
+                                        width="70%">
 
                                 </a>
                             </div><!-- /.logo -->
