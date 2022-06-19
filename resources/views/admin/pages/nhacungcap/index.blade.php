@@ -88,7 +88,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Nhập email">
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="Nhập email">
                                 <div class="invalid-feedback" id="email"></div>
                             </div>
                             <div class="form-group">
@@ -135,8 +136,8 @@
                             <div class="form-group">
                                 <input type="hidden" name="id">
                                 <label for="_ten_nha_cung_cap">Tên nhà cung cấp</label>
-                                <input type="text" class="form-control" id="_ten_nha_cung_cap" name="_ten_nha_cung_cap"
-                                    placeholder="Nhập tên nhà cung cấp">
+                                <input type="text" class="form-control" id="_ten_nha_cung_cap"
+                                    name="_ten_nha_cung_cap" placeholder="Nhập tên nhà cung cấp">
                                 <div class="invalid-feedback" id="_ten_nha_cung_cap"></div>
                             </div>
                             <div class="form-group">
@@ -194,7 +195,18 @@
 @endsection
 
 @section('script')
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
     <script>
+        ClassicEditor
+            .create(document.querySelector('#gioi_thieu'))
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#_gioi_thieu'))
+            .catch(error => {
+                console.error(error);
+            });
         $(document).ready(function() {
             bsCustomFileInput.init();
 

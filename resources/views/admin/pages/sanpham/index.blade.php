@@ -236,7 +236,28 @@
 @endsection
 
 @section('script')
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
     <script>
+        ClassicEditor
+            .create(document.querySelector('#mo_ta'))
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#_mo_ta'))
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#huong_dan_su_dung'))
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#_huong_dan_su_dung'))
+            .catch(error => {
+                console.error(error);
+            });
         $(document).ready(function() {
             bsCustomFileInput.init();
             $('#danhsach').DataTable({
