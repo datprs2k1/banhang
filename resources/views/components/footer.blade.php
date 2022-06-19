@@ -138,7 +138,7 @@
                     </div><!-- /.col -->
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="module-heading">
-                            <h4 class="module-title">Vũ Tiến Toàn</h4>
+                            <h4 class="module-title">Đỗ Thị Hằng</h4>
                         </div><!-- /.module-heading -->
 
                         <div class="module-body">
@@ -172,7 +172,7 @@
                                         </span>
                                     </div>
                                     <div class="media-body">
-                                        <a href="mailto:vutientoan24122001@gmail.com">vutientoan24122001@gmail.com</a>
+                                        <a href="mailto:dothihang@gmail.com">dothihang@gmail.com</a>
                                     </div>
                                 </li>
 
