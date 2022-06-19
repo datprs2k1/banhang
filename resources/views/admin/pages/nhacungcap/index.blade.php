@@ -239,6 +239,12 @@
                     }
                 ],
                 "columnDefs": [{
+                        "targets": 3,
+                        "render": function(data, type, row, meta) {
+                            return data.length > 100 ? data.substr(0, 100) + '...' : data;
+                        }
+                    },
+                    {
                         "targets": 1,
                         "data": "description",
                         "render": function(data, type, row, meta) {

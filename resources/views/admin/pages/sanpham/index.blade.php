@@ -295,6 +295,12 @@
                         },
                     },
                     {
+                        "targets": [3, 4],
+                        "render": function(data, type, row, meta) {
+                            return data.length > 100 ? data.substr(0, 100) + '...' : data;
+                        }
+                    },
+                    {
                         className: "align-middle",
                         targets: "_all"
                     },
