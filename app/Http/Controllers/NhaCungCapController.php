@@ -47,7 +47,7 @@ class NhaCungCapController extends Controller
         $request->validate(
             [
                 'ten_nha_cung_cap' => 'required|unique:nha_cung_cap,ten_nha_cung_cap',
-                'gioi_thieu' => 'required|max:255',
+                'gioi_thieu' => 'required',
                 'dia_chi' => 'required|max:255',
                 'phone' => 'required|numeric|digits:10',
                 'email' => 'required|email',
@@ -58,7 +58,6 @@ class NhaCungCapController extends Controller
                 'ten_nha_cung_cap.required' => 'Tên nhà cung cấp không được để trống',
                 'ten_nha_cung_cap.unique' => 'Tên nhà cung cấp đã tồn tại',
                 'gioi_thieu.required' => 'Giới thiệu không được để trống',
-                'gioi_thieu.max' => 'Giới thiệu không được quá 255 ký tự',
                 'dia_chi.required' => 'Địa chỉ không được để trống',
                 'dia_chi.max' => 'Địa chỉ không được quá 255 ký tự',
                 'phone.required' => 'Số điện thoại không được để trống',
@@ -131,7 +130,7 @@ class NhaCungCapController extends Controller
         $request->validate(
             [
                 'ten_nha_cung_cap' => 'required',
-                'gioi_thieu' => 'required|max:255',
+                'gioi_thieu' => 'required',
                 'dia_chi' => 'required|max:255',
                 'phone' => 'required|numeric|digits:10',
                 'email' => 'required|email',
@@ -141,7 +140,6 @@ class NhaCungCapController extends Controller
             [
                 'ten_nha_cung_cap.required' => 'Tên nhà cung cấp không được để trống',
                 'gioi_thieu.required' => 'Giới thiệu không được để trống',
-                'gioi_thieu.max' => 'Giới thiệu không được quá 255 ký tự',
                 'dia_chi.required' => 'Địa chỉ không được để trống',
                 'dia_chi.max' => 'Địa chỉ không được quá 255 ký tự',
                 'phone.required' => 'Số điện thoại không được để trống',
