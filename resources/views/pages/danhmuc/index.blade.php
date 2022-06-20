@@ -84,6 +84,16 @@
 
                         </div><!-- /.tab-content -->
 
+                        <div class="clearfix filters-container">
+
+                            <div class="text-right">
+                                <div class="pagination-container">
+                                    {{ $danh_muc->sanPham->links() }}
+                                </div><!-- /.pagination-container -->
+                            </div><!-- /.text-right -->
+
+                        </div><!-- /.filters-container -->
+
 
                     </div><!-- /.search-result-container -->
 
@@ -100,6 +110,5 @@
             min-height: 250px;
             object-fit: contain;
         }
-
     </style>
 @endsection

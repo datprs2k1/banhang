@@ -158,7 +158,8 @@ class DanhMucController extends Controller
     public function chi_tiet(Request $request)
     {
         $id = $request->id;
-        $danh_muc = DanhMuc::with('sanPham')->find($id);
+        $danh_muc = DanhMuc::find($id);
+        $danh_muc->setRelation('sanPham', $danh_muc->sanPham()->paginate(10));
 
         return view('pages.danhmuc.index', compact('danh_muc'));
     }
