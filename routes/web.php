@@ -31,6 +31,7 @@ Route::get('/sanpham/{tensanpham}_{id}', [SanPhamController::class, 'chi_tiet'])
 Route::get('/danhmuc/{ten_danh_muc}_{id}', [DanhMucController::class, 'chi_tiet'])->name('danhmuc.chi_tiet')->where('id', '[0-9]+')->where('ten_danh_muc', '[a-zA-Z0-9-]+');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/logout', [UserController::class, 'logout'])->name('logout');
     Route::get('/giohang/danhsach', [GioHangController::class, 'danhsach'])->name('giohang.danhsach');
     Route::get('/giohang/tinh', [GioHangController::class, 'getTinh'])->name('giohang.tinh');
     Route::get('/giohang/huyen/{id}', [GioHangController::class, 'getHuyen'])->name('giohang.huyen')->where('id', '[0-9]+');

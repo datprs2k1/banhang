@@ -18,13 +18,15 @@
                                             hàng</a></li>
                                     <li><a href="{{ route('hoadon.index') }}"><i class=" icon fa fa-list-alt"></i>Hoá
                                             đơn</a></li>
-                                    <li>
-                                    @else
+                                    <li><a href="{{ route('logout') }}"><i class=" icon fa fa-list-alt"></i>Đăng
+                                            xuất</a></li>
+                                @else
                                     <li><a href="{{ route('giohang.index') }}"><i
                                                 class="icon fa fa-shopping-cart"></i>Giỏ hàng</a>
                                     </li>
                                     <li><a href="#"><i class="icon fa fa-check"></i>Thanh toán</a></li>
-                                    <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Đăng nhập</a></li>
+                                    <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Đăng nhập</a>
+                                    </li>
                                 @endif
                             </ul>
                         </div><!-- /.cnt-account -->

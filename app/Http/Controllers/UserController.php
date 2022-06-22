@@ -84,4 +84,10 @@ class UserController extends Controller
             'message' => 'Đăng ký thành công.',
         ], 200);
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
 }
