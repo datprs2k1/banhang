@@ -1069,6 +1069,32 @@ $(document).on('click', '#btn-xoa-khach-hang', function(e) {
     });
 });
 
+$('#btn-tim-kiem').on('click', function(e) {
+    e.preventDefault();
+
+    let keyword = $('input[name="tim-kiem"]').val();
+
+    $.ajax({
+        url: window.location.protocol + '//' + window.location.host + '/timkiem/' + keyword,
+        type: 'GET',
+        success: function(data) {
+            let ketqua = ` <ul class="dropdown-menu" style="display:block; position:relative; width: 100%">`
+            $.each(data, function(key, value) {
+                ketqua += `<li class="dropdown-item"><a href="${window.location.protocol + '//' + window.location.host + '/sanpham/' + value.id}">
+                <img src="${window.location.protocol + '//' + window.location.host + '/images/sanpham/' + value.hinh_anh}" width="100px" height="100px">
+                <span style="margin-left: 50px; width:200px">${value.ten_san_pham}</span>
+                <span style="margin-left: 50px; width:50px">${value.gia_ban}</span>
+                <span style="margin-left: 50px; width:50px">${value.trang_thai}</span>
+                </a></li>`
+            });
+            ketqua += `</ul>`
+
+            $('#ket-qua').html(ketqua);
+        }
+    })
+
+})
+
 $(document).ready(function () {
 
     giohang();

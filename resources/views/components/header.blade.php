@@ -68,11 +68,13 @@
                                             </li>
                                         </ul>
 
-                                        <input class="search-field" name="timkiem"
+                                        <input class="search-field" name="tim-kiem"
                                             placeholder="Nhập tên sản phẩm để tìm kiếm..." />
                                         <button type="submit" name="search-btn" class="search-button"
-                                            href="#"></button>
+                                            id="btn-tim-kiem"></button>
+                                        <div id="ket-qua">
 
+                                        </div>
                                     </div>
                                 </form>
                             </div><!-- /.search-area -->

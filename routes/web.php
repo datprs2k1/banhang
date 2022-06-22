@@ -29,7 +29,7 @@ Route::post('/login', [UserController::class, 'auth'])->name('login');
 Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::get('/sanpham/{tensanpham}_{id}', [SanPhamController::class, 'chi_tiet'])->name('sanpham.chi_tiet')->where('id', '[0-9]+')->where('tensanpham', '[a-zA-Z0-9-]+');
 Route::get('/danhmuc/{ten_danh_muc}_{id}', [DanhMucController::class, 'chi_tiet'])->name('danhmuc.chi_tiet')->where('id', '[0-9]+')->where('ten_danh_muc', '[a-zA-Z0-9-]+');
-
+Route::get('/timkiem/{keyword}', [HomeController::class, 'timkiem'])->name('timkiem');
 Route::middleware('auth')->group(function () {
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
     Route::get('/giohang/danhsach', [GioHangController::class, 'danhsach'])->name('giohang.danhsach');
