@@ -89,10 +89,12 @@
                                 <div class="invalid-feedback" id="gia_ban"></div>
                             </div>
                             <div class="form-group">
-                                <label for="so_luong">Số lượng</label>
-                                <input type="number" class="form-control" id="so_luong" name="so_luong"
-                                    placeholder="Nhập địa chỉ">
-                                <div class="invalid-feedback" id="so_luong"></div>
+                                <label for="trang_thai">Trạng thái</label>
+                                <select class="custom-select form-control-border" id="trang_thai">
+                                    <option value="Còn hàng">Còn hàng</option>
+                                    <option value="Hết hàng">Hết hàng</option>
+                                </select>
+                                <div class="invalid-feedback" id="trang_thai"></div>
                             </div>
                             <div class="form-group">
                                 <label for="don_vi_tinh">Đơn vị tính</label>
@@ -180,10 +182,12 @@
                                 <div class="invalid-feedback" id="_gia_ban"></div>
                             </div>
                             <div class="form-group">
-                                <label for="_so_luong">Số lượng</label>
-                                <input type="number" class="form-control" id="_so_luong" name="_so_luong"
-                                    placeholder="Nhập địa chỉ">
-                                <div class="invalid-feedback" id="_so_luong"></div>
+                                <label for="_trang_thai">Trạng thái</label>
+                                <select class="custom-select form-control-border" id="_trang_thai">
+                                    <option value="Còn hàng">Còn hàng</option>
+                                    <option value="Hết hàng">Hết hàng</option>
+                                </select>
+                                <div class="invalid-feedback" id="_trang_thai"></div>
                             </div>
                             <div class="form-group">
                                 <label for="_don_vi_tinh">Đơn vị tính</label>
@@ -238,6 +242,7 @@
 @section('script')
     <script>
         $(document).ready(function() {
+            CKEDITOR.replace('mo_ta');
             bsCustomFileInput.init();
             $('#danhsach').DataTable({
                 processing: true,
@@ -268,8 +273,8 @@
                         name: 'gia_ban'
                     },
                     {
-                        data: 'so_luong',
-                        name: 'so_luong'
+                        data: 'trang_thai',
+                        name: 'trang_thai'
                     },
                     {
                         data: 'nha_cung_cap.ten_nha_cung_cap',

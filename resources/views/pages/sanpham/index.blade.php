@@ -62,7 +62,7 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <div class="stock-box">
-                                                    <span class="value">{{ $san_pham->so_luong }}</span>
+                                                    <span class="value">{{ $san_pham->trang_thai }}</span>
                                                 </div>
                                             </div>
                                         </div><!-- /.row -->
@@ -86,12 +86,12 @@
                                             </div>
                                             <div class="col-sm-2">
                                                 <div class="cart-quantity">
-                                                    <input class="soluong_input" type="number" name="so_luong" value="1"
-                                                        min="1">
+                                                    <input class="soluong_input" type="number" name="so_luong"
+                                                        value="1" min="1">
                                                 </div>
                                             </div>
                                             <div class="col-sm-7">
-                                                <b>{{ $san_pham->don_vi }}</b>
+                                                <b>{{ $san_pham->don_vi_tinh }}</b>
                                             </div>
                                         </div><!-- /.row -->
 

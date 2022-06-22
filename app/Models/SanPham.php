@@ -10,7 +10,7 @@ class SanPham extends Model
     use HasFactory;
 
     protected $fillable = [
-        'ten_san_pham', 'hinh_anh', 'mo_ta', 'gia_ban', 'huong_dan_su_dung', 'don_vi_tinh', 'so_luong', 'id_danh_muc', 'id_nha_cung_cap'
+        'ten_san_pham', 'hinh_anh', 'mo_ta', 'gia_ban', 'huong_dan_su_dung', 'don_vi_tinh', 'trang_thai', 'id_danh_muc', 'id_nha_cung_cap'
     ];
 
     protected $hidden = [

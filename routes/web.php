@@ -55,5 +55,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/thongke/30ngay', [ThongKeController::class, 'doanhthutrong30ngay'])->name('thongke.30ngay');
         Route::get('/thongke/12thang', [ThongKeController::class, 'doanhthutrong12thang'])->name('thongke.12thang');
         Route::get('/thongke/sanpham', [ThongKeController::class, 'sanpham'])->name('thongke.sanpham');
+        Route::delete('/khachang/delete/{id}', [AdminController::class, 'deleteKhachHang'])->name('khachhang.delete');
+        Route::get('khachhang/danhsach', [AdminController::class, 'danhsachkhachhang'])->name('khachhang.danhsach');
+        Route::get('/khachhang', [AdminController::class, 'khachhang'])->name('admin.khachhang');
     });
 });

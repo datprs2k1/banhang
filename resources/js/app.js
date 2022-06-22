@@ -497,7 +497,7 @@ $('#them_san_pham').on('click', function (e) {
     let gia_ban = $('input[name="gia_ban"]').val();
     let mo_ta = $('textarea[name="mo_ta"]').val();
     let huong_dan_su_dung = $('textarea[name="huong_dan_su_dung"]').val();
-    let so_luong = $('input[name="so_luong"]').val();
+    let trang_thai = $('#trang_thai :selected').val();
     let don_vi_tinh = $('#don_vi_tinh :selected').val();
     let id_nha_cung_cap = $('#id_nha_cung_cap :selected').val();
     let id_danh_muc = $('#id_danh_muc :selected').val();
@@ -511,8 +511,8 @@ $('#them_san_pham').on('click', function (e) {
     $('textarea[name="mo_ta"]').next().html('');
     $('textarea[name="huong_dan_su_dung"]').removeClass('is-invalid');
     $('textarea[name="huong_dan_su_dung"]').next().html('');
-    $('input[name="so_luong"]').removeClass('is-invalid');
-    $('input[name="so_luong"]').next().html('');
+    $('#trang_thai').removeClass('is-invalid');
+    $('#trang_thai').next().html('');
     $('input[name="don_vi_tinh"]').removeClass('is-invalid');
     $('input[name="don_vi_tinh"]').next().html('');
     $('select[name="id_nha_cung_cap"]').removeClass('is-invalid');
@@ -525,7 +525,7 @@ $('#them_san_pham').on('click', function (e) {
     formData.append('gia_ban', gia_ban);
     formData.append('mo_ta', mo_ta);
     formData.append('huong_dan_su_dung', huong_dan_su_dung);
-    formData.append('so_luong', so_luong);
+    formData.append('trang_thai', trang_thai);
     formData.append('don_vi_tinh', don_vi_tinh);
     formData.append('id_nha_cung_cap', id_nha_cung_cap);
     formData.append('id_danh_muc', id_danh_muc);
@@ -582,7 +582,7 @@ $('#sua_san_pham').on('click', function (e) {
     let gia_ban = $('input[name="_gia_ban"]').val();
     let mo_ta = $('textarea[name="_mo_ta"]').val();
     let huong_dan_su_dung = $('textarea[name="_huong_dan_su_dung"]').val();
-    let so_luong = $('input[name="_so_luong"]').val();
+    let trang_thai = $('#_trang_thai :selected').val();
     let don_vi_tinh = $('#_don_vi_tinh :selected').val();
     let id_nha_cung_cap = $('#_id_nha_cung_cap :selected').val();
     let id_danh_muc = $('#_id_danh_muc :selected').val();
@@ -596,8 +596,8 @@ $('#sua_san_pham').on('click', function (e) {
     $('textarea[name="_mo_ta"]').next().html('');
     $('textarea[name="_huong_dan_su_dung"]').removeClass('is-invalid');
     $('textarea[name="_huong_dan_su_dung"]').next().html('');
-    $('input[name="_so_luong"]').removeClass('is-invalid');
-    $('input[name="_so_luong"]').next().html('');
+    $('#_trang_thai').removeClass('is-invalid');
+    $('#_trang_thai').next().html('');
     $('input[name="_don_vi_tinh"]').removeClass('is-invalid');
     $('input[name="_don_vi_tinh"]').next().html('');
     $('select[name="_id_nha_cung_cap"]').removeClass('is-invalid');
@@ -611,7 +611,7 @@ $('#sua_san_pham').on('click', function (e) {
     formData.append('gia_ban', gia_ban);
     formData.append('mo_ta', mo_ta);
     formData.append('huong_dan_su_dung', huong_dan_su_dung);
-    formData.append('so_luong', so_luong);
+    formData.append('trang_thai', trang_thai);
     formData.append('don_vi_tinh', don_vi_tinh);
     formData.append('id_nha_cung_cap', id_nha_cung_cap);
     formData.append('id_danh_muc', id_danh_muc);
@@ -1022,6 +1022,48 @@ $(document).on('click', '#btn-huy', function () {
                 $('#hoadon-' + id).remove();
                 let table = $('#danhsach').DataTable();
                 table.ajax.reload();
+            });
+        }
+    });
+});
+
+$(document).on('click', '#btn-xoa-khach-hang', function(e) {
+    let id = $(this).data('id');
+    e.preventDefault();
+
+    Swal.fire({
+        title: 'Bạn có chắc muốn xóa?',
+        text: "Khách hàng sẽ bị xóa vĩnh viễn!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Có, xóa ngay!',
+        cancelButtonText: 'Không, hủy!',
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                url: id,
+                type: 'DELETE',
+                success: function(data) {
+                    Swal.fire({
+                        title: "Thành công!",
+                        text: "Xóa khách hàng thành công!",
+                        icon: "success",
+                        button: "OK!",
+                    }).then((result) => {
+                        let table = $('#danhsach').DataTable();
+                        table.ajax.reload();
+                    });
+                },
+                error: function(error) {
+                    Swal.fire({
+                        title: "Lỗi!",
+                        text: "Xóa khách hàng thất bại!",
+                        icon: "error",
+                        button: "OK!",
+                    });
+                }
             });
         }
     });

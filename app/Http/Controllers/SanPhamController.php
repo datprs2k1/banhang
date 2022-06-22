@@ -48,8 +48,8 @@ class SanPhamController extends Controller
                 'mo_ta' => 'required',
                 'gia_ban' => 'required|numeric',
                 'huong_dan_su_dung' => 'required',
+                'trang_thai' => 'required',
                 'don_vi_tinh' => 'required',
-                'so_luong' => 'required|numeric',
                 'id_danh_muc' => 'required',
                 'id_nha_cung_cap' => 'required',
             ],
@@ -64,8 +64,7 @@ class SanPhamController extends Controller
                 'gia_ban.numeric' => 'Giá bán phải là số',
                 'huong_dan_su_dung.required' => 'Hướng dẫn sử dụng không được để trống',
                 'don_vi_tinh.required' => 'Đơn vị tính không được để trống',
-                'so_luong.required' => 'Số lượng không được để trống',
-                'so_luong.numeric' => 'Số lượng phải là số',
+                'trang_thai.required' => 'Trạng thái không được để trống',
                 'id_danh_muc.required' => 'Danh mục không được để trống',
                 'id_nha_cung_cap.required' => 'Nhà cung cấp không được để trống',
             ]
@@ -82,7 +81,7 @@ class SanPhamController extends Controller
         $san_pham->gia_ban = $request->gia_ban;
         $san_pham->huong_dan_su_dung = $request->huong_dan_su_dung;
         $san_pham->don_vi_tinh = $request->don_vi_tinh;
-        $san_pham->so_luong = $request->so_luong;
+        $san_pham->trang_thai = $request->trang_thai;
         $san_pham->id_danh_muc = $request->id_danh_muc;
         $san_pham->id_nha_cung_cap = $request->id_nha_cung_cap;
         $san_pham->save();
@@ -133,7 +132,7 @@ class SanPhamController extends Controller
                 'gia_ban' => 'required|numeric',
                 'huong_dan_su_dung' => 'required',
                 'don_vi_tinh' => 'required',
-                'so_luong' => 'required|numeric',
+                'trang_thai' => 'required',
                 'id_danh_muc' => 'required',
                 'id_nha_cung_cap' => 'required',
             ],
@@ -146,8 +145,7 @@ class SanPhamController extends Controller
                 'gia_ban.numeric' => 'Giá bán phải là số',
                 'huong_dan_su_dung.required' => 'Hướng dẫn sử dụng không được để trống',
                 'don_vi_tinh.required' => 'Đơn vị tính không được để trống',
-                'so_luong.required' => 'Số lượng không được để trống',
-                'so_luong.numeric' => 'Số lượng phải là số',
+                'trang_thai.required' => 'Trạng thái không được để trống',
                 'id_danh_muc.required' => 'Danh mục không được để trống',
                 'id_nha_cung_cap.required' => 'Nhà cung cấp không được để trống',
             ]
@@ -159,7 +157,7 @@ class SanPhamController extends Controller
         $san_pham->gia_ban = $request->gia_ban;
         $san_pham->huong_dan_su_dung = $request->huong_dan_su_dung;
         $san_pham->don_vi_tinh = $request->don_vi_tinh;
-        $san_pham->so_luong = $request->so_luong;
+        $san_pham->trang_thai = $request->trang_thai;
         $san_pham->id_danh_muc = $request->id_danh_muc;
         $san_pham->id_nha_cung_cap = $request->id_nha_cung_cap;
 

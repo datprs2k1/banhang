@@ -31,6 +31,7 @@
         @yield('content')
         @yield('footer')
     </div>
+    <script src="//cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
     <script src="https://adminlte.io/themes/v3/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

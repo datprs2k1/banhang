@@ -48,5 +48,17 @@ return [
                 'icon' => 'fa fa-list',
             ],
         ],
-    ]
+    ],
+    [
+        'name' => 'Quản lý khách hàng',
+        'icon' => 'fa fa-list',
+        'route' => 'admin.pages.khachhang.index',
+        'children' => [
+            [
+                'name' => 'Danh sách',
+                'route' => 'admin.khachhang',
+                'icon' => 'fa fa-list',
+            ],
+        ],
+    ],
 ];

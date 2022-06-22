@@ -58,3 +58,8 @@ Breadcrumbs::for('admin.hoadon', function ($trail) {
     $trail->parent('admin.dashboard');
     $trail->push('Hóa đơn', route('admin.hoadon'));
 });
+
+Breadcrumbs::for('admin.khachhang', function ($trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Khách hàng', route('admin.khachhang'));
+});

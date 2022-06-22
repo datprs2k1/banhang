@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\HoaDon;
 use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
-
+use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 
 class AdminController extends Controller
 {
@@ -82,5 +82,29 @@ class AdminController extends Controller
         return Datatables::of($hoa_don)->addIndexColumn()->addColumn('mahoadon', function ($object) {
             return $object->id;
         })->rawColumns(['mahoadon'])->make(true);
+    }
+
+    public function khachhang()
+    {
+        return view('admin.pages.khachhang.index');
+    }
+
+    public function danhsachkhachhang()
+    {
+        $khach_hang = User::role('user')->get();
+        return FacadesDataTables::of($khach_hang)
+            ->addIndexColumn()
+            ->addColumn('hanh_dong', function ($object) {
+                return route('khachhang.delete', [
+                    'id' => $object->id
+                ]);
+            })
+            ->rawColumns(['hanh_dong'])
+            ->make(true);
+    }
+
+    public function deletekhachhang($id)
+    {
+        User::destroy($id);
     }
 }
