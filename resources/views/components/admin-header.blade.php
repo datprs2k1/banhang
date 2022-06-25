@@ -152,11 +152,11 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <router-link to="/adminpanel" class="brand-link">
+        <a href="{{ route('admin.dashboard') }}" class="brand-link">
             <img src="/images/AdminLTELogo.png" alt="NHÓM 9 Logo" class="brand-image img-circle elevation-3"
                 style="opacity: 0.9" />
             <span class="brand-text font-weight-light">NHÓM 9</span>
-        </router-link>
+        </a>
 
         <!-- Sidebar -->
         <div class="sidebar">

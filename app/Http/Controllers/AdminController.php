@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\HoaDon;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
 use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
@@ -52,7 +53,12 @@ class AdminController extends Controller
     public function dashboard()
     {
         $hoa_don = HoaDon::where('id_user', Auth::user()->id)->where('trang_thai', 'Đang chờ xử lý')->get();
-        return view('admin.pages.dashboard.index', compact('hoa_don'));
+        $so_don_trong_7_ngay = $this->sodonhangtrong7ngay();
+        $so_don_da_duyet_trong_7_ngay = $this->sodonhangdaduyettrong7ngay();
+        $so_khach_hang_moi_trong_7_ngay = $this->sokhachhangmoitrong7ngay();
+        $doanh_thu_7_ngay = $this->doanhthu7ngayganday();
+
+        return view('admin.pages.dashboard.index', compact('hoa_don', 'so_don_trong_7_ngay', 'so_don_da_duyet_trong_7_ngay', 'so_khach_hang_moi_trong_7_ngay', 'doanh_thu_7_ngay'));
     }
 
     public function login()
@@ -106,5 +112,57 @@ class AdminController extends Controller
     public function deletekhachhang($id)
     {
         User::destroy($id);
+    }
+
+    public function sodonhangtrong7ngay()
+    {
+        $start = Carbon::now()->subDay(8)->format('Y-m-d');
+        $end = Carbon::now()->addDay(1)->format('Y-m-d');
+
+        $count = HoaDon::whereBetween('created_at', [
+            $start,
+            $end
+        ])->count();
+
+        return $count;
+    }
+
+    public function sodonhangdaduyettrong7ngay()
+    {
+        $start = Carbon::now()->subDay(8)->format('Y-m-d');
+        $end = Carbon::now()->addDay(1)->format('Y-m-d');
+
+        $count = HoaDon::whereBetween('created_at', [
+            $start,
+            $end
+        ])->where('trang_thai', 'Đã xác nhận')->count();
+
+        return $count;
+    }
+
+    public function sokhachhangmoitrong7ngay()
+    {
+        $start = Carbon::now()->subDay(8)->format('Y-m-d');
+        $end = Carbon::now()->addDay(1)->format('Y-m-d');
+
+        $count = User::whereBetween('created_at', [
+            $start,
+            $end
+        ])->count();
+
+        return $count;
+    }
+
+    public function doanhthu7ngayganday()
+    {
+        $start = Carbon::now()->subDay(8)->format('Y-m-d');
+        $end = Carbon::now()->addDay(1)->format('Y-m-d');
+
+        $doanh_thu = HoaDon::whereBetween('created_at', [
+            $start,
+            $end
+        ])->where('trang_thai', 'Đã xác nhận')->sum('tong_tien');
+
+        return $doanh_thu;
     }
 }
