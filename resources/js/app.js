@@ -774,7 +774,7 @@ $('#btn-dangnhap').on('click', function (e) {
                 showConfirmButton: false,
                 timer: 1000
             }).then(() => {
-                history.go(-1);
+                window.location = window.location.protocol + '//' + window.location.host;
             });
         }, error: function (error) {
             let responseText = JSON.parse(error.responseText);

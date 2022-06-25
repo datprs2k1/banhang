@@ -11,8 +11,6 @@ class DanhMuc extends Model
 
     protected $fillable = [
         'ten_danh_muc',
-        'created_at',
-        'updated_at',
     ];
 
     protected $hidden = [

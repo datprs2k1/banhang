@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -35,11 +35,19 @@ class UserController extends Controller
         $cerdentials = $request->only('email', 'password');
 
         if (Auth::attempt($cerdentials, $remember)) {
-            return response()->json(['message' => 'Đăng nhập thành công.', 'status' => true]);
+            return response()->json([
+                'message' => 'Đăng nhập thành công.',
+                'status' => true,
+            ]);
         } else {
-            return response()->json(['errors' => [
-                'error' => 'Email hoặc mật khẩu không đúng.'
-            ]], 422);
+            return response()->json(
+                [
+                    'errors' => [
+                        'error' => 'Email hoặc mật khẩu không đúng.',
+                    ],
+                ],
+                422
+            );
         }
     }
 
@@ -80,14 +88,68 @@ class UserController extends Controller
 
         $user->assignRole('user');
 
-        return response()->json([
-            'message' => 'Đăng ký thành công.',
-        ], 200);
+        return response()->json(
+            [
+                'message' => 'Đăng ký thành công.',
+            ],
+            200
+        );
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login');
+    }
+
+    public function taikhoan()
+    {
+        $user = Auth::user();
+        return view('pages.taikhoan.index', compact('user'));
+    }
+
+    public function suataikhoan(Request $request)
+    {
+        $request->validate([
+            'name' => ['required'],
+            'email' => 'required|email|unique:users,email,' . Auth::user()->id,
+        ]);
+
+        $user = User::find(Auth::user()->id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+
+        return redirect()
+            ->route('taikhoan')
+            ->with('success', 'Sửa tài khoản thành công');
+    }
+
+    public function doimatkhau(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|min:6',
+            'new_password' => 'required|min:6|confirmed',
+        ]);
+
+        $user = User::find(Auth::user()->id);
+        if (!Hash::check($request->password, $user->password)) {
+            return redirect()
+                ->route('taikhoan')
+                ->withErrors([
+                    'msg' => 'Mật khẩu cũ không chính xác',
+                ]);
+        }
+
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        $this->logout($request);
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->route('login');
     }
 }

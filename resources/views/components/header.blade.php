@@ -12,7 +12,8 @@
                         <div class="cnt-account">
                             <ul class="list-unstyled">
                                 @if (Auth::check())
-                                    <li><a href="#"><i class="icon fa fa-user"></i>Tài khoản</a></li>
+                                    <li><a href="{{ route('taikhoan') }}"><i class="icon fa fa-user"></i>Tài khoản</a>
+                                    </li>
                                     <li><a href="{{ route('giohang.index') }}"><i
                                                 class="icon fa fa-shopping-cart"></i>Giỏ
                                             hàng</a></li>

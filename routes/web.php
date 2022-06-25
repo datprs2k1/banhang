@@ -27,37 +27,103 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'auth'])->name('login');
 Route::post('/register', [UserController::class, 'register'])->name('register');
-Route::get('/sanpham/{tensanpham}_{id}', [SanPhamController::class, 'chi_tiet'])->name('sanpham.chi_tiet')->where('id', '[0-9]+')->where('tensanpham', '[a-zA-Z0-9-]+');
-Route::get('/danhmuc/{ten_danh_muc}_{id}', [DanhMucController::class, 'chi_tiet'])->name('danhmuc.chi_tiet')->where('id', '[0-9]+')->where('ten_danh_muc', '[a-zA-Z0-9-]+');
-Route::get('/timkiem/{keyword}', [HomeController::class, 'timkiem'])->name('timkiem');
+Route::get('/sanpham/{tensanpham}_{id}', [SanPhamController::class, 'chi_tiet'])
+    ->name('sanpham.chi_tiet')
+    ->where('id', '[0-9]+')
+    ->where('tensanpham', '[a-zA-Z0-9-]+');
+Route::get('/danhmuc/{ten_danh_muc}_{id}', [
+    DanhMucController::class,
+    'chi_tiet',
+])
+    ->name('danhmuc.chi_tiet')
+    ->where('id', '[0-9]+')
+    ->where('ten_danh_muc', '[a-zA-Z0-9-]+');
+Route::get('/timkiem/{keyword}', [HomeController::class, 'timkiem'])->name(
+    'timkiem'
+);
 Route::middleware('auth')->group(function () {
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
-    Route::get('/giohang/danhsach', [GioHangController::class, 'danhsach'])->name('giohang.danhsach');
-    Route::get('/giohang/tinh', [GioHangController::class, 'getTinh'])->name('giohang.tinh');
-    Route::get('/giohang/huyen/{id}', [GioHangController::class, 'getHuyen'])->name('giohang.huyen')->where('id', '[0-9]+');
-    Route::get('/giohang/xa/{id}', [GioHangController::class, 'getXa'])->name('giohang.xa')->where('id', '[0-9]+');
+    Route::get('/giohang/danhsach', [
+        GioHangController::class,
+        'danhsach',
+    ])->name('giohang.danhsach');
+    Route::get('/giohang/tinh', [GioHangController::class, 'getTinh'])->name(
+        'giohang.tinh'
+    );
+    Route::get('/giohang/huyen/{id}', [GioHangController::class, 'getHuyen'])
+        ->name('giohang.huyen')
+        ->where('id', '[0-9]+');
+    Route::get('/giohang/xa/{id}', [GioHangController::class, 'getXa'])
+        ->name('giohang.xa')
+        ->where('id', '[0-9]+');
     Route::resource('/giohang', GioHangController::class);
     Route::resource('/hoadon', HoaDonController::class);
+    Route::get('/taikhoan', [UserController::class, 'taikhoan'])->name(
+        'taikhoan'
+    );
+    Route::post('taikhoan', [UserController::class, 'suataikhoan'])->name(
+        'taikhoan.sua'
+    );
+    Route::post('doimatkhau', [UserController::class, 'doimatkhau'])->name(
+        'doimatkhau'
+    );
 });
 
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('/login', [AdminController::class, 'login'])->name('admin.login');
-    Route::post('/login', [AdminController::class, 'auth'])->name('admin.authAdmin');
+    Route::get('/login', [AdminController::class, 'login'])->name(
+        'admin.login'
+    );
+    Route::post('/login', [AdminController::class, 'auth'])->name(
+        'admin.authAdmin'
+    );
     Route::middleware('admin')->group(function () {
-        Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-        Route::get('/danhmuc/danhsach', [DanhMucController::class, 'danhsach'])->name('danhmuc.danhsach');
+        Route::get('/', [AdminController::class, 'dashboard'])->name(
+            'admin.dashboard'
+        );
+        Route::get('/danhmuc/danhsach', [
+            DanhMucController::class,
+            'danhsach',
+        ])->name('danhmuc.danhsach');
         Route::resource('/danhmuc', DanhMucController::class);
-        Route::get('/nhacungcap/danhsach', [NhaCungCapController::class, 'danhsach'])->name('nhacungcap.danhsach');
+        Route::get('/nhacungcap/danhsach', [
+            NhaCungCapController::class,
+            'danhsach',
+        ])->name('nhacungcap.danhsach');
         Route::resource('/nhacungcap', NhaCungCapController::class);
-        Route::get('/sanpham/danhsach', [SanPhamController::class, 'danhsach'])->name('sanpham.danhsach');
+        Route::get('/sanpham/danhsach', [
+            SanPhamController::class,
+            'danhsach',
+        ])->name('sanpham.danhsach');
         Route::resource('/sanpham', SanPhamController::class);
-        Route::get('/hoadon/danhsach', [AdminController::class, 'danhsachhoadon'])->name('hoadon.danhsach');
-        Route::get('/hoadon', [AdminController::class, 'hoadon'])->name('admin.hoadon');
-        Route::get('/thongke/30ngay', [ThongKeController::class, 'doanhthutrong30ngay'])->name('thongke.30ngay');
-        Route::get('/thongke/12thang', [ThongKeController::class, 'doanhthutrong12thang'])->name('thongke.12thang');
-        Route::get('/thongke/sanpham', [ThongKeController::class, 'sanpham'])->name('thongke.sanpham');
-        Route::delete('/khachang/delete/{id}', [AdminController::class, 'deleteKhachHang'])->name('khachhang.delete');
-        Route::get('khachhang/danhsach', [AdminController::class, 'danhsachkhachhang'])->name('khachhang.danhsach');
-        Route::get('/khachhang', [AdminController::class, 'khachhang'])->name('admin.khachhang');
+        Route::get('/hoadon/danhsach', [
+            AdminController::class,
+            'danhsachhoadon',
+        ])->name('hoadon.danhsach');
+        Route::get('/hoadon', [AdminController::class, 'hoadon'])->name(
+            'admin.hoadon'
+        );
+        Route::get('/thongke/30ngay', [
+            ThongKeController::class,
+            'doanhthutrong30ngay',
+        ])->name('thongke.30ngay');
+        Route::get('/thongke/12thang', [
+            ThongKeController::class,
+            'doanhthutrong12thang',
+        ])->name('thongke.12thang');
+        Route::get('/thongke/sanpham', [
+            ThongKeController::class,
+            'sanpham',
+        ])->name('thongke.sanpham');
+        Route::delete('/khachang/delete/{id}', [
+            AdminController::class,
+            'deleteKhachHang',
+        ])->name('khachhang.delete');
+        Route::get('khachhang/danhsach', [
+            AdminController::class,
+            'danhsachkhachhang',
+        ])->name('khachhang.danhsach');
+        Route::get('/khachhang', [AdminController::class, 'khachhang'])->name(
+            'admin.khachhang'
+        );
     });
 });
