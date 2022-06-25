@@ -115,6 +115,7 @@
                                 <ul id="product-tabs" class="nav nav-tabs nav-tab-cell">
                                     <li class="active"><a data-toggle="tab" href="#description">Mô tả</a></li>
                                     <li><a data-toggle="tab" href="#review">Hướng dẫn sử dụng</a></li>
+                                    <li><a data-toggle="tab" href="#nha_cung_cap">Nhà cung cấp</a></li>
                                 </ul><!-- /.nav-tabs #product-tabs -->
                             </div>
                             <div class="col-sm-9">
@@ -132,6 +133,31 @@
 
                                             <div class="product-reviews">
                                                 <p class="text">{!! $san_pham->huong_dan_su_dung !!}</p>
+                                            </div><!-- /.product-HDSD -->
+                                        </div><!-- /.product-tab -->
+                                    </div><!-- /.tab-pane -->
+
+                                    <div id="nha_cung_cap" class="tab-pane">
+                                        <div class="product-tab">
+
+                                            <div class="product-reviews">
+                                                <img src="{{ asset('images/nhacungcap/' . $san_pham->nhaCungCap->logo) }}"
+                                                    alt=""
+                                                    style="width: 150px; height: 100px;margin-left: auto;
+                                                    margin-right: auto;  display: block;
+">
+                                                <h1 style="text-align: center">
+                                                    {{ $san_pham->nhaCungCap->ten_nha_cung_cap }}
+                                                </h1>
+                                                <div class="thong_tin">
+                                                    <h4>Địa chỉ: {{ $san_pham->nhaCungCap->dia_chi }}</h4>
+                                                    <h4>Điện thoại: {{ $san_pham->nhaCungCap->dien_thoai }}</h4>
+                                                    <h4>Email: {{ $san_pham->nhaCungCap->email }}</h4>
+                                                </div>
+                                                <div class="gioi_thieu">
+                                                    <h4>Giới thiệu:</h4>
+                                                    <p class="text">{!! $san_pham->nhaCungCap->gioi_thieu !!}</p>
+                                                </div>
                                             </div><!-- /.product-HDSD -->
                                         </div><!-- /.product-tab -->
                                     </div><!-- /.tab-pane -->
