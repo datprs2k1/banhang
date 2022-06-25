@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Database\Factories\DanhMucFactory;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
@@ -31,5 +32,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $user->assignRole($role1);
+
+        $this->call([
+            DanhMucSeeder::class,
+            NhacungCapSeeder::class,
+        ]);
     }
 }

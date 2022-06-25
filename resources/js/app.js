@@ -416,6 +416,14 @@ $('#sua_nha_cung_cap').on('click', function (e) {
             }).then((result) => {
                 if (result.value) {
                     $('#modal-sua').modal('hide');
+                    $('input[name="_ten_nha_cung_cap"]').val('');
+                    $('textarea[name="_gioi_thieu"]').val('');
+                    $('input[name="_dia_chi"]').val('');
+                    $('input[name="_phone"]').val('');
+                    $('input[name="_email"]').val('');
+                    $('input[name="_website"]').val('');
+                    $('input[name="_logo"]').val('');
+                    $('#_img-logo').attr('src', '');
 
                     let table = $('#danhsach').DataTable();
                     table.ajax.reload();
@@ -551,6 +559,17 @@ $('#them_san_pham').on('click', function (e) {
                 button: "OK!",
             }).then((result) => {
                 if (result.value) {
+                    $('input[name="ten_san_pham"]').val('');
+                    $('input[name="gia_ban"]').val('');
+                    $('textarea[name="mo_ta"]').val('');
+                    $('textarea[name="huong_dan_su_dung"]').val('');
+                    $('#trang_thai').val('');
+                    $('input[name="don_vi_tinh"]').val('');
+                    $('select[name="id_nha_cung_cap"]').val('');
+                    $('select[name="id_danh_muc"]').val('');
+                    $('input[name="hinh_anh"]').val('');
+                    $('#hinh_anh').attr('src', '');
+
                     let table = $('#danhsach').DataTable();
                     table.ajax.reload();
                 }
@@ -638,6 +657,17 @@ $('#sua_san_pham').on('click', function (e) {
                 button: "OK!",
             }).then((result) => {
                 if (result.value) {
+                    $('input[name="id"]').val('');
+                    $('input[name="_ten_san_pham"]').val('');
+                    $('input[name="_gia_ban"]').val('');
+                    $('textarea[name="_mo_ta"]').val('');
+                    $('textarea[name="_huong_dan_su_dung"]').val('');
+                    $('#_trang_thai').val('');
+                    $('#_don_vi_tinh').val('');
+                    $('#_id_nha_cung_cap').val('');
+                    $('#_id_danh_muc').val('');
+                    $('#hinh_anh').attr('src', '');
+
                     let table = $('#danhsach').DataTable();
                     table.ajax.reload();
                 }
