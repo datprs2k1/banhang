@@ -242,7 +242,6 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            CKEDITOR.replace('mo_ta');
             bsCustomFileInput.init();
             $('#danhsach').DataTable({
                 processing: true,

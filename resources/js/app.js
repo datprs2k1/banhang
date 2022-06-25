@@ -559,6 +559,7 @@ $('#them_san_pham').on('click', function (e) {
                 button: "OK!",
             }).then((result) => {
                 if (result.value) {
+                    $('#modal_them').modal('hide');
                     $('input[name="ten_san_pham"]').val('');
                     $('input[name="gia_ban"]').val('');
                     $('textarea[name="mo_ta"]').val('');
@@ -657,6 +658,8 @@ $('#sua_san_pham').on('click', function (e) {
                 button: "OK!",
             }).then((result) => {
                 if (result.value) {
+
+                    $('#modal_sua').modal('hide');
                     $('input[name="id"]').val('');
                     $('input[name="_ten_san_pham"]').val('');
                     $('input[name="_gia_ban"]').val('');
