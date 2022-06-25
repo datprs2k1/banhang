@@ -151,8 +151,11 @@
                                                 </h1>
                                                 <div class="thong_tin">
                                                     <h4>Địa chỉ: {{ $san_pham->nhaCungCap->dia_chi }}</h4>
-                                                    <h4>Điện thoại: {{ $san_pham->nhaCungCap->dien_thoai }}</h4>
+                                                    <h4>Điện thoại: {{ $san_pham->nhaCungCap->phone }}</h4>
                                                     <h4>Email: {{ $san_pham->nhaCungCap->email }}</h4>
+                                                    <h4>Website: <a target="_blank"
+                                                            href="{{ $san_pham->nhaCungCap->website }}">{{ $san_pham->nhaCungCap->website }}</a>
+                                                    </h4>
                                                 </div>
                                                 <div class="gioi_thieu">
                                                     <h4>Giới thiệu:</h4>
