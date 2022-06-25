@@ -77,7 +77,7 @@
                         <div id="product-tabs-slider" class="scroll-tabs outer-top-vs wow fadeInUp">
                             <div class="more-info-tab clearfix ">
                                 <h3 class="new-product-title pull-left">{{ $item->ten_danh_muc }}</h3>
-                                <a href="/danhmuc/{{ $item->id }}">Xem thêm</a>
+                                <a href="/danhmuc/{{ Str::slug($item->ten_danh_muc) . '_' . $item->id }}">Xem thêm</a>
                             </div>
                             <div class="tab-content outer-top-xs">
                                 <div class="tab-pane in active" id="all">
@@ -126,7 +126,8 @@
                                                                                             class="add-cart-button btn-group">
                                                                                             <button data-toggle="tooltip"
                                                                                                 class="btn btn-primary icon"
-                                                                                                type="button" title=""
+                                                                                                type="button"
+                                                                                                title=""
                                                                                                 data-original-title="Thêm">
                                                                                                 <i
                                                                                                     class="fa fa-shopping-cart"></i>

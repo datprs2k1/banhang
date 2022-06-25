@@ -267,11 +267,16 @@
                     },
                     success: function(data) {
                         swal({
-                            title: 'Đặt hàng thành công',
-                            text: 'Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất',
-                            type: 'success',
-                            confirmButtonText: 'OK'
-                        });
+                                title: 'Đặt hàng thành công',
+                                text: 'Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất',
+                                type: 'success',
+                                confirmButtonText: 'OK'
+                            })
+                            .then(function() {
+                                window.location.href = window.location.protocol + '//' +
+                                    window.location.host +
+                                    '/hoadon/';
+                            });
                     },
                     error: function(data) {
                         swal({

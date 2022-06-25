@@ -1080,7 +1080,7 @@ $('#btn-tim-kiem').on('click', function(e) {
         success: function(data) {
             let ketqua = ` <ul class="dropdown-menu" style="display:block; position:relative; width: 100%">`
             $.each(data, function(key, value) {
-                ketqua += `<li class="dropdown-item"><a href="${window.location.protocol + '//' + window.location.host + '/sanpham/' + value.id}">
+                ketqua += `<li class="dropdown-item"><a href="${window.location.protocol + '//' + window.location.host + '/sanpham/' + to_slug(value.ten_san_pham) + '_' + value.id}">
                 <img src="${window.location.protocol + '//' + window.location.host + '/images/sanpham/' + value.hinh_anh}" width="100px" height="100px">
                 <span style="margin-left: 50px; width:200px">${value.ten_san_pham}</span>
                 <span style="margin-left: 50px; width:50px">${value.gia_ban}</span>
@@ -1093,7 +1093,37 @@ $('#btn-tim-kiem').on('click', function(e) {
         }
     })
 
-})
+});
+
+function to_slug(str)
+{
+    // Chuyển hết sang chữ thường
+    str = str.toLowerCase();
+
+    // xóa dấu
+    str = str.replace(/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/g, 'a');
+    str = str.replace(/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/g, 'e');
+    str = str.replace(/(ì|í|ị|ỉ|ĩ)/g, 'i');
+    str = str.replace(/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/g, 'o');
+    str = str.replace(/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/g, 'u');
+    str = str.replace(/(ỳ|ý|ỵ|ỷ|ỹ)/g, 'y');
+    str = str.replace(/(đ)/g, 'd');
+
+    // Xóa ký tự đặc biệt
+    str = str.replace(/([^0-9a-z-\s])/g, '');
+
+    // Xóa khoảng trắng thay bằng ký tự -
+    str = str.replace(/(\s+)/g, '-');
+
+    // xóa phần dự - ở đầu
+    str = str.replace(/^-+/g, '');
+
+    // xóa phần dư - ở cuối
+    str = str.replace(/-+$/g, '');
+
+    // return
+    return str;
+}
 
 $(document).ready(function () {
 

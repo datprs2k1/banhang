@@ -49,7 +49,7 @@ class HoaDonController extends Controller
                 'dia_chi' => 'required|string',
                 'thanh_toan' => 'required',
                 'ten_nguoi_nhan' => 'required|string',
-                'so_dien_thoai' => 'required|string|not_regex:/(0)[0-9]{9}/',
+                'so_dien_thoai' => 'required|string|not_regex:/(0)[0-9]{10}/|min:10',
             ],
             [
                 'id_tinh.required' => 'Vui lòng chọn huyện',
