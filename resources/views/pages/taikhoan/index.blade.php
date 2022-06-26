@@ -47,8 +47,8 @@
                         <div class="button-group">
                             <button type="submit" class="btn btn-success" name="update" title="Sửa">Sửa thông tin
                                 cá nhân</button>
-                            <button type="submit" class="btn btn-danger" name="delete" title="Xoá"
-                                onclick="return confirm('Bạn chắc chắn muốn xoá tài khoản?')">Xoá tài khoản</button>
+                            {{-- <button type="submit" class="btn btn-danger" name="delete" title="Xoá"
+                                onclick="return confirm('Bạn chắc chắn muốn xoá tài khoản?')">Xoá tài khoản</button> --}}
                             <a href="{{ route('logout') }}"class="btn btn-info" name="logout" title="Đăng xuất">Đăng
                                 xuất</a>
 

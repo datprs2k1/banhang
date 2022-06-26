@@ -40,31 +40,31 @@ class DanhMucSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            [
-                'ten_danh_muc' => 'Sữa - Sản Phẩm Từ Sữa',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'ten_danh_muc' => 'Đồ Uống - Giải Khát',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'ten_danh_muc' => 'Hóa Mỹ Phẩm',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'ten_danh_muc' => 'Chăm Sóc Cá Nhân',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'ten_danh_muc' => 'Chăm Sóc Mẹ Và Bé',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]
+            // [
+            //     'ten_danh_muc' => 'Sữa - Sản Phẩm Từ Sữa',
+            //     'created_at' => now(),
+            //     'updated_at' => now(),
+            // ],
+            // [
+            //     'ten_danh_muc' => 'Đồ Uống - Giải Khát',
+            //     'created_at' => now(),
+            //     'updated_at' => now(),
+            // ],
+            // [
+            //     'ten_danh_muc' => 'Hóa Mỹ Phẩm',
+            //     'created_at' => now(),
+            //     'updated_at' => now(),
+            // ],
+            // [
+            //     'ten_danh_muc' => 'Chăm Sóc Cá Nhân',
+            //     'created_at' => now(),
+            //     'updated_at' => now(),
+            // ],
+            // [
+            //     'ten_danh_muc' => 'Chăm Sóc Mẹ Và Bé',
+            //     'created_at' => now(),
+            //     'updated_at' => now(),
+            // ]
         ];
 
         DanhMuc::insert($data);
