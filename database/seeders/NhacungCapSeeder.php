@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\NhaCungCap;
 use Illuminate\Database\Seeder;
 
-class NhacungCapSeeder extends Seeder
+class NhaCungCapSeeder extends Seeder
 {
     /**
      * Run the database seeds.
