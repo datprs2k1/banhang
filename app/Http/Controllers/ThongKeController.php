@@ -46,7 +46,7 @@ class ThongKeController extends Controller
     public function doanhthutrong12thang()
     {
         $start = Carbon::now()->subMonth(11)->format('Y-m-d');
-        $end = Carbon::now()->subDay(1)->format('Y-m-d');
+        $end = Carbon::now()->addDay(1)->format('Y-m-d');
 
         $doanhthu = HoaDon::select(
             DB::raw('sum(tong_tien) as doanhthu'),
@@ -62,7 +62,7 @@ class ThongKeController extends Controller
 
         $doanhthu12thang = [];
         for ($i = 11; $i >= 0; $i--) {
-            $key = Carbon::now()->subMonths($i)->format('m-Y');
+            $key = Carbon::now()->subMonth($i)->format('m-Y');
             $doanhthu12thang[$key] = 0;
         }
 
