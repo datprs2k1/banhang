@@ -46,7 +46,7 @@ class ThongKeController extends Controller
     public function doanhthutrong12thang()
     {
         $start = Carbon::now()->subMonth(11)->format('Y-m-d');
-        $end = Carbon::now()->format('Y-m-d');
+        $end = Carbon::now()->subDay(1)->format('Y-m-d');
 
         $doanhthu = HoaDon::select(
             DB::raw('sum(tong_tien) as doanhthu'),
