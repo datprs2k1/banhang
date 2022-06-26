@@ -102,6 +102,13 @@
                                     <option value="Chiếc">Chiếc</option>
                                     <option value="Cái">Cái</option>
                                     <option value="Lon">Lon</option>
+                                    <option value="KG">KG</option>
+                                    <option value="Hộp">Hộp</option>
+                                    <option value="Thùng">Thùng</option>
+                                    <option value="Quả">Quả</option>
+                                    <option value="Khay">Khay</option>
+                                    <option value="Túi">Túi</option>
+                                    <option value="Gói">Gói</option>
                                 </select>
                                 <div class="invalid-feedback" id="don_vi_tinh"></div>
                             </div>
@@ -195,6 +202,13 @@
                                     <option value="Chiếc">Chiếc</option>
                                     <option value="Cái">Cái</option>
                                     <option value="Lon">Lon</option>
+                                    <option value="KG">KG</option>
+                                    <option value="Hộp">Hộp</option>
+                                    <option value="Thùng">Thùng</option>
+                                    <option value="Quả">Quả</option>
+                                    <option value="Khay">Khay</option>
+                                    <option value="Túi">Túi</option>
+                                    <option value="Gói">Gói</option>
                                 </select>
                                 <div class="invalid-feedback" id="_don_vi_tinh"></div>
                             </div>
@@ -329,7 +343,7 @@
                         $('#_mo_ta').val(data.mo_ta);
                         $('#_huong_dan_su_dung').val(data.huong_dan_su_dung);
                         $('#_gia_ban').val(data.gia_ban);
-                        $('#_so_luong').val(data.so_luong);
+                        $('#_trang_thai').val(data.trang_thai);
                         $('#_don_vi_tinh').val(data.don_vi_tinh);
                         $('#_id_nha_cung_cap').val(data.id_nha_cung_cap);
                         $('#_id_danh_muc').val(data.id_danh_muc);

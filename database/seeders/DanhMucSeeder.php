@@ -26,17 +26,17 @@ class DanhMucSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'ten_danh_muc' => 'Thực Phẩm Chế Biến',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'ten_danh_muc' => 'Thực Phẩm Đông Lạnh',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'ten_danh_muc' => 'Thực Phẩm Khô - Gia Vị',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'ten_danh_muc' => 'Bánh Kẹo - Đồ Ăn Vặt',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
