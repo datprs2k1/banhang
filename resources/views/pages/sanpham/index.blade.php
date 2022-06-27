@@ -79,31 +79,33 @@
                                         </div><!-- /.row -->
                                     </div><!-- /.price-container -->
 
-                                    <div class="quantity-container info-container">
-                                        <div class="row quantity-container_wrapper">
-                                            <div class="col-sm-2">
-                                                <span class="label">Qty :</span>
-                                            </div>
-                                            <div class="col-sm-2">
-                                                <div class="cart-quantity">
-                                                    <input class="soluong_input" type="number" name="so_luong"
-                                                        value="1" min="1">
+                                    @if ($san_pham->trang_thai == 'Còn hàng')
+                                        <div class="quantity-container info-container">
+                                            <div class="row quantity-container_wrapper">
+                                                <div class="col-sm-2">
+                                                    <span class="label">Qty :</span>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="cart-quantity">
+                                                        <input class="soluong_input" type="number" name="so_luong"
+                                                            value="1" min="1">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <b>{{ $san_pham->don_vi_tinh }}</b>
+                                                </div>
+                                            </div><!-- /.row -->
+
+                                            <div class="row mt15">
+                                                <div class="col-12">
+                                                    <button class="btn btn-primary" id="them_gio_hang"
+                                                        data-id="{{ $san_pham->id }}"><i
+                                                            class="fa fa-shopping-cart inner-right-vs"></i> Thêm vào
+                                                        giỏ</button>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-7">
-                                                <b>{{ $san_pham->don_vi_tinh }}</b>
-                                            </div>
-                                        </div><!-- /.row -->
-
-                                        <div class="row mt15">
-                                            <div class="col-12">
-                                                <button class="btn btn-primary" id="them_gio_hang"
-                                                    data-id="{{ $san_pham->id }}"><i
-                                                        class="fa fa-shopping-cart inner-right-vs"></i> Thêm vào
-                                                    giỏ</button>
-                                            </div>
-                                        </div>
-                                    </div><!-- /.quantity-container -->
+                                        </div><!-- /.quantity-container -->
+                                    @endif
                                 </div><!-- /.product-info -->
                             </div><!-- /.col-sm-7 -->
                         </div><!-- /.row -->

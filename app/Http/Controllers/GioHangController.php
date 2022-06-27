@@ -58,6 +58,7 @@ class GioHangController extends Controller
 
         $find = GioHang::where('id_san_pham', $request->id_san_pham)->where('id_user', Auth::user()->id)->first();
 
+
         if ($find) {
             $find->so_luong += $request->so_luong;
             $find->save();

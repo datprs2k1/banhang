@@ -119,18 +119,34 @@
                                                                         </div><!-- /.product-info -->
                                                                         <div class="cart clearfix animate-effect">
                                                                             <div class="action">
-                                                                                <div id="them_gio_hang"
+                                                                                <div id="{{ $sanpham->trang_thai == 'Hết hàng' ? 'out-of-stock' : 'them_gio_hang' }}"
                                                                                     data-id="{{ $sanpham->id }}">
                                                                                     <ul class="list-unstyled">
                                                                                         <li
                                                                                             class="add-cart-button btn-group">
-                                                                                            <button data-toggle="tooltip"
-                                                                                                class="btn btn-primary icon"
-                                                                                                type="button"
-                                                                                                title=""
-                                                                                                data-original-title="Thêm">
-                                                                                                <i
-                                                                                                    class="fa fa-shopping-cart"></i>
+                                                                                            @if ($sanpham->trang_thai == 'Hết hàng')
+                                                                                                <button
+                                                                                                    data-toggle="tooltip"
+                                                                                                    class="btn btn-primary icon"
+                                                                                                    type="button"
+                                                                                                    title=""
+                                                                                                    data-original-title="Hết hàng"
+                                                                                                    disabled>
+                                                                                                    <i
+                                                                                                        class="fa fa-shopping-cart"></i>
+                                                                                                    Hết hàng
+                                                                                                @else
+                                                                                                    <button
+                                                                                                        data-toggle="tooltip"
+                                                                                                        class="btn btn-primary icon"
+                                                                                                        type="button"
+                                                                                                        title=""
+                                                                                                        data-original-title="Thêm">
+                                                                                                        <i
+                                                                                                            class="fa fa-shopping-cart"></i>
+                                                                                            @endif
+
+
                                                                                             </button>
                                                                                         </li>
                                                                                     </ul>

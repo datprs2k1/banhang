@@ -72,7 +72,7 @@
                                                             min="1">
                                                     </div>
                                                 </td>
-                                                <td>2</td>
+                                                <td>{{ $item->sanPham->don_vi_tinh }}</td>
                                                 <td class="cart-product-sub-total"><span
                                                         class="cart-sub-total-price">{{ number_format($item->sanPham->gia_ban, 0, ',', '.') }}</span>
                                                 </td>
