@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\GioHang;
 use App\Models\Huyen;
+use App\Models\SanPham;
 use App\Models\Tinh;
 use App\Models\Xa;
 use Illuminate\Http\Request;
@@ -55,6 +56,12 @@ class GioHangController extends Controller
                 'so_luong.numeric' => 'Vui lòng nhập số lượng',
             ]
         );
+
+        $san_pham = SanPham::where('id', $request->id_san_pham)->first();
+
+        if ($san_pham->trang_thai == 'Hết hàng') {
+            return response()->json(['error' => 'Sản phẩm đã hết hàng']);
+        }
 
         $find = GioHang::where('id_san_pham', $request->id_san_pham)->where('id_user', Auth::user()->id)->first();
 
