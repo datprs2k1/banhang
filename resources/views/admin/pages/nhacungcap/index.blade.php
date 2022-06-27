@@ -199,10 +199,36 @@
         $(document).ready(function() {
             bsCustomFileInput.init();
 
+            var buttonCommon = {
+                exportOptions: {
+                    columns: ':visible :not(.not-export)'
+                }
+            };
+
+
             $('#danhsach').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: '{!! route('nhacungcap.danhsach') !!}',
+                dom: 'Bfrtip',
+                buttons: [
+                    $.extend(true, {}, buttonCommon, {
+                        extend: 'copyHtml5'
+                    }),
+                    $.extend(true, {}, buttonCommon, {
+                        extend: 'csvHtml5'
+                    }),
+                    $.extend(true, {}, buttonCommon, {
+                        extend: 'excelHtml5'
+                    }),
+                    $.extend(true, {}, buttonCommon, {
+                        extend: 'pdfHtml5'
+                    }),
+                    $.extend(true, {}, buttonCommon, {
+                        extend: 'print'
+                    }),
+                    'colvis'
+                ],
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
@@ -239,6 +265,10 @@
                     }
                 ],
                 "columnDefs": [{
+                        className: 'not-export',
+                        targets: 7
+                    },
+                    {
                         "targets": 3,
                         "render": function(data, type, row, meta) {
                             return data.length > 100 ? data.substr(0, 100) + '...' : data;

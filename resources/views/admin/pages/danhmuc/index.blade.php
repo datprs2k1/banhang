@@ -112,10 +112,39 @@
 @section('script')
     <script>
         $(document).ready(function() {
+            var buttonCommon = {
+                exportOptions: {
+                    columns: ':visible :not(.not-export)'
+                }
+            };
+
             $('#danhsach').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: '{!! route('danhmuc.danhsach') !!}',
+                dom: 'Bfrtip',
+                buttons: [
+                    $.extend(true, {}, buttonCommon, {
+                        extend: 'copyHtml5'
+                    }),
+                    $.extend(true, {}, buttonCommon, {
+                        extend: 'csvHtml5'
+                    }),
+                    $.extend(true, {}, buttonCommon, {
+                        extend: 'excelHtml5'
+                    }),
+                    $.extend(true, {}, buttonCommon, {
+                        extend: 'pdfHtml5'
+                    }),
+                    $.extend(true, {}, buttonCommon, {
+                        extend: 'print'
+                    }),
+                    'colvis'
+                ],
+                columnDefs: [{
+                    className: 'not-export',
+                    targets: 2
+                }],
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
