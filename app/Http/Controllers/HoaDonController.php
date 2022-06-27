@@ -65,6 +65,7 @@ class HoaDonController extends Controller
                 'ten_nguoi_nhan.string' => 'Vui lòng nhập tên người nhận',
                 'so_dien_thoai.required' => 'Vui lòng nhập số điện thoại',
                 'so_dien_thoai.not_regex' => 'Số điện thoại tối đa 10 số',
+                'so_dien_thoai.min' => 'Số điện thoại tối đa 10 số',
 
             ],
         );
