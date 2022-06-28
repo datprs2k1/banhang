@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
+            DiaChiSeeder::class,
             UserSeeder::class,
             DanhMucSeeder::class,
             NhaCungCapSeeder::class,
