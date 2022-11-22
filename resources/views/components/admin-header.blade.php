@@ -168,6 +168,9 @@
                 <div class="info">
                     <a href="#" class="d-block">{{ Auth::user()->name }}</a>
                 </div>
+                <div class="ms-4">
+                    <a class="btn btn-primary text-light" href="{{ route('logout') }}">Đăng xuất</a>
+                </div>
             </div>
 
             <!-- SidebarSearch Form -->
